@@ -1,0 +1,102 @@
+/** 
+ *  Copyright © 2015 Claus Christmann <hcc |ä| gatech.edu>.
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ */
+ 
+ /** \page command_and_control Commands and Controling Nodes
+
+The principal way to \e command a Node is through a member function, like in 
+this pseudo-code:
+
+\code
+Vehicle::stopMotion(); // a self-contained command
+Vehicle::goTo(Waypoint(0,0,0)); // a command that needs parameters
+\endcode
+
+This simple example already shows the two principal types of commands the 
+simulation needs to handle:
+- commands that are fully self-contained
+- commands that need additional parameters
+
+Furthermore, there are two possibilities to issue commands:
+- from the local Node (as in the example above)
+- from a remote Node (e.g. <tt>ControlStation c</tt> commanding <tt>Vehicle v</tt>)
+
+
+\section c2_selfcontained_commands Self-contained Commands
+
+These are the steps necessary to add a command:
+
+- Create the member doing the action
+  
+  As there are no arguments for the member, it is recommended to create the 
+  function as a public Q_SLOT of the Node.
+  
+- Create and add a corresponding entry in IDL::Commands::CommandTypes
+  
+  Start the entry with a letter indicating the (derived) class that implements 
+  that functionality, i.e. \c N_ for a command at the Node level and \c V_ for
+  a command at the Vehicle level.
+  
+- Update enumToQString(const IDL::Commands::CommandTypes & commandType)
+  
+  Create a short but descriptive phrase describing the command. 
+  
+- Update MainNodeWindow::showBlipContextMenu() to include the new command.
+  
+  \code
+action = new QAction(this);
+action->setText(tr("&Stop Motion"));
+connect(action, &QAction::triggered,
+        [=](){ controlStation->sendCommand(IDL::Commands::V_STOP_MOTION,id); } );
+commandMenu->addAction(action);
+  \endcode
+  
+  This will allow ControlStations to actually send the command.
+  
+- Create or update the processReveicedMessage() function to connect the received
+  command to the action to take
+  
+  For the used Vehicle example, this function could look something like
+  
+  \code
+void Vehicle::processReceivedMessage ( const NodeId& sender, const IDL::Messages::ModeChangeCommand& message )
+{
+  // deal with Node-level N_ commands...
+  Node::processReceivedMessage(sender,message);
+  
+  if( NodeId(message.addressee) == id())
+  {
+    using namespace IDL::Commands;
+    switch( message.command )
+    {
+      case V_STOP_MOTION:             stopMotion(); break;
+      case V_CONTINUE_MOTION:         continueMotion(); break;
+      case V_ENABLE_JOYSTICK_CONTROL: goJoystickControl(); break;
+      case NULL_COMMAND: //NOTE: fall-through intended
+      default: break;
+    }
+  }
+}
+  \endcode
+
+
+\section c2_parameterized_commands Parameterized Commands
+
+
+
+
+
+*/

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ /*
+ *  Copyright © 2015 Claus Christmann <hcc |ä| gatech.edu>.
+ *  
+ */
+-->
+<Configuration
+  xmlns="http://uav.ae.gatech.edu/XML/SAI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://uav.ae.gatech.edu/XML/SAI ../../XSD/sai.xsd"
+>
+
+<DatumNED>
+  <!--  Downtown  
+ <coordinates>-84.38453231630939,33.759579111458,00.0</coordinates>-->
+  
+  <!-- McKenna MOUT 
+  <coordinates>-84.80533267069394,32.37130130978881,0</coordinates> -->
+   <coordinates>-84.80537171192663,32.37133263847644,0</coordinates> 
+</DatumNED>
+
+<Arena>
+  <!-- McKenna MOUT -->
+  <coordinates>
+    -84.80455720143341,32.37158635731291,0 -84.80599779156783,32.37138525543941,0 -84.80607274691425,32.3712423420057,0 -84.8063698924317,32.3709997372148,0 -84.80624543676279,32.37061049357821,0 -84.80570045116139,32.37025265330841,0 -84.8055884635323,32.37002892315341,0 -84.80540395339732,32.36992893004193,0 -84.80516146795652,32.36983298484992,0 -84.80503026343575,32.3697470334272,0 -84.80505503547698,32.36951961374155,0 -84.80458216652642,32.36947847721661,0 -84.80414841871594,32.3695494545757,0 -84.80389967552617,32.36974625444622,0 -84.80373687734877,32.3699267646757,0 -84.80367506709457,32.37025542355135,0 -84.80379242353965,32.37055963140964,0 -84.80392313726306,32.37078713785061,0 -84.80405918184223,32.37087511967391,0 -84.80455720143341,32.37158635731291,0 
+  </coordinates>
+</Arena>
+
+<Obstacles>
+  <href>KML/McKenna_MOUT.kml</href>
+</Obstacles>
+
+<Nodes>
+  <UAV>
+    <name>Hummingbird0</name>
+    <coordinates> -84.80531083896517,32.37127576166376,0 </coordinates> <!--hexagon-->
+    <startupDelay>1003</startupDelay>
+    <dds>
+      <name>DDS</name>
+    </dds>
+    <camera>
+      <hFov>80</hFov>
+    </camera>
+    <gust>
+      <name>GUST Interface</name>
+      <gustIp>192.168.54.38</gustIp>
+      <gustUdpPort>3010</gustUdpPort>
+      <localIp>192.168.54.38</localIp>
+      <localUdpPort>2010</localUdpPort>
+      <inpFilePath>~/svn/work/rmax</inpFilePath>
+      <manAugment><!-- using the defaults -->
+        <anom />
+        <jerk />
+        <vcHzGo />
+        <vcHzStop />
+        <vcHzSide />        
+      </manAugment>
+      <params_mr>
+          <damp />
+      </params_mr>
+    </gust>
+  </UAV>
+</Nodes>
+   
+</Configuration>

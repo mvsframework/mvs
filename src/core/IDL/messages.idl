@@ -1,0 +1,195 @@
+/*
+ * 
+ *  Copyright © 2015 Claus Christmann <hcc |ä| gatech.edu>.
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ * 
+ * 
+ *
+ * Use the RTI Launcher or this CLI command to generate the proper C++ code from
+ * this IDL file:
+ * /opt/RTI/ndds.4.5e/scripts/rtiddsgen  -language C++ -namespace -stringSize 255 -sequenceSize 100 -replace <path_to>/ddsMessages.idl
+ *
+ */
+
+//@copy-declaration #include <QtCore/QMetaType>
+
+#include "IDL/data.idl"
+
+module IDL {
+module Messages {
+
+//
+// (Abstract) Message Base Classes
+// ===============================
+// There used to be a generic base class
+//
+//   struct Base {
+//     IDL::Data::NodeId sender;     //@key  // the universally unique id of the sending node's publisher 
+//   };
+//
+// which isn't needed any more as the senderId can be deduced from the 
+// participant. IDL at this point doesn't seem to allow inheriting from empty
+// structures, hence the MessageBase has been removed.
+//
+
+
+
+struct AddressedMessage {
+  IDL::Data::NodeId addressee; //@key  // whom this message is intended for
+};
+
+
+//
+// Message send by all nodes
+//
+
+
+//@copy-declaration /** \class Hello
+//@copy-declaration  * \brief Hello Message Struct.
+//@copy-declaration  * 
+//@copy-declaration  * This is a message to exchange brief text/string based messages.
+//@copy-declaration  * 
+//@copy-declaration  * \note Use TypeSupport::create_data() and TypeSupport::delete_data()
+//@copy-declaration  * instead of \c new and \c delete in order to ensure deep allocation and 
+//@copy-declaration  * destruction of sequences and strings. 
+//@copy-declaration  */
+struct Hello {
+  string<IDL::MAX_STRING_LENGTH> textMessage;
+};
+
+
+//@copy-declaration /** \class State
+//@copy-declaration  * \brief State Message Struct.
+//@copy-declaration  * \note Use TypeSupport::create_data() and TypeSupport::delete_data()
+//@copy-declaration  * instead of \c new and \c delete in order to ensure deep allocation and 
+//@copy-declaration  * destruction of sequences. 
+//@copy-declaration  */
+struct State {
+  IDL::Data::Position_Datum   position;         // the position of the sender (wrt. its Datum)
+  IDL::Data::Velocity_Datum   velocity;         // the velocity of the sender (wrt. its Datum)
+  IDL::Data::EulerAngles_deg  attitude;         // the attitude of the sender (wrt. its Datum)
+};
+
+//@copy-declaration /** \class Status
+//@copy-declaration  * \brief Status Message Struct.
+//@copy-declaration  * \note Use TypeSupport::create_data() and TypeSupport::delete_data()
+//@copy-declaration  * instead of \c new and \c delete in order to ensure deep allocation and 
+//@copy-declaration  * destruction of sequences. 
+//@copy-declaration  * 
+//@copy-declaration  * \todo Maybe this message should also contain information about the
+//@copy-declaration  * ControlStation a Node is affiliated with?
+//@copy-declaration  * 
+//@copy-declaration  */
+struct Status {
+  IDL::Data::ModeDescriptor mode;           // the mode (i.e. the collection of states) a node is currently in
+  IDL::Data::ElementId closestObstacle;     // the ID of the obstacle closest to the sender
+  IDL::Data::ElementId target;              // the ID of the element considered the target
+};
+
+//@copy-declaration /** \class Datum
+//@copy-declaration  * \brief Datum Message Struct.
+//@copy-declaration  * \note Use TypeSupport::create_data() and TypeSupport::delete_data()
+//@copy-declaration  * instead of \c new and \c delete in order to ensure deep allocation and 
+//@copy-declaration  * destruction of sequences. 
+//@copy-declaration  */
+struct Datum {
+  IDL::Data::FrameOfReference     datum;          // the Datum frame of reference of this node.
+};
+
+
+//@copy-declaration /** \class Flightplan 
+//@copy-declaration  * \brief Flightplan Message Struct.
+//@copy-declaration  * \note Use TypeSupport::create_data() and TypeSupport::delete_data()
+//@copy-declaration  * instead of \c new and \c delete in order to ensure deep allocation and 
+//@copy-declaration  * destruction of sequences. 
+//@copy-declaration  */
+struct Flightplan {
+  IDL::Data::Flightplan plan; // the actual plan contained in the message
+  unsigned short currentWaypoint; // the waypoint the sender is currently targeting
+};
+
+
+//@copy-declaration /** \class ExternalPlanCommand 
+//@copy-declaration  * \brief External Flightplan Command Message Struct.
+//@copy-declaration  * \note Use TypeSupport::create_data() and TypeSupport::delete_data()
+//@copy-declaration  * instead of \c new and \c delete in order to ensure deep allocation and 
+//@copy-declaration  * destruction of sequences. 
+//@copy-declaration  */
+struct ExternalPlanCommand : AddressedMessage {
+  IDL::Data::Flightplan plan; // the actual flightplan contained in the message
+};
+
+//@copy-declaration /** \class JoystickCommand 
+//@copy-declaration  * \brief JoystickCommand Message Struct.
+//@copy-declaration  * \note Use TypeSupport::create_data() and TypeSupport::delete_data()
+//@copy-declaration  * instead of \c new and \c delete in order to ensure deep allocation and 
+//@copy-declaration  * destruction of sequences. 
+//@copy-declaration  */
+struct JoystickCommand : AddressedMessage {
+  IDL::Data::JoystickData joystick; // access to the joystick data 
+};
+
+//@copy-declaration /** \class ModeChangeCommand 
+//@copy-declaration  * \brief ModeChangeCommand Message Struct.
+//@copy-declaration  * \note Use TypeSupport::create_data() and TypeSupport::delete_data()
+//@copy-declaration  * instead of \c new and \c delete in order to ensure deep allocation and 
+//@copy-declaration  * destruction of sequences. 
+//@copy-declaration  */
+struct ModeChangeCommand : AddressedMessage {
+  IDL::Commands::CommandTypes command;              // the actual command to transmit
+};
+
+
+
+struct Guidance {
+  IDL::Data::NodeId controlStation; //@key  // the control station controlling the primaryVehicle
+  IDL::Data::NodeId primaryVehicle; //@key  // the primary vehicle controlled by the controlStation  
+};
+
+//@copy-declaration /** \class DualHopGuidance 
+//@copy-declaration  * \brief DualHopGuidance Message Struct.
+//@copy-declaration  * \note Use TypeSupport::create_data() and TypeSupport::delete_data()
+//@copy-declaration  * instead of \c new and \c delete in order to ensure deep allocation and 
+//@copy-declaration  * destruction of sequences. 
+//@copy-declaration  */
+struct DualHopGuidance : Guidance {
+  unsigned short totalBeadCount; // the number of intermediary positions the sender assumes necessary to maintain the chain from control station to primary vehicle
+  unsigned short beadIndex;   // a not necessarily consecutive index that is used to indicate the position in the intermediary chain. (Lower numbers mean "closer" to the primary vehicle.)
+  IDL::Data::NodeId head; // the Node the sender considers its head
+  IDL::Data::NodeId tail; // the Node the sender considers its tail
+};
+
+
+}; // end module Messages
+}; // end module IDL
+
+
+
+// =============================================
+//  NOTE: THESE ARE NOT JUST PLAIN COMMENTS !!!
+// =============================================
+
+//@copy-declaration Q_DECLARE_METATYPE(IDL::Data::StateDescriptorId);
+//@copy-declaration Q_DECLARE_METATYPE(IDL::Data::JoystickData);
+
+//@copy-declaration Q_DECLARE_METATYPE(IDL::Messages::State)
+//@copy-declaration Q_DECLARE_METATYPE(IDL::Messages::Status)
+//@copy-declaration Q_DECLARE_METATYPE(IDL::Messages::Datum)
+//@copy-declaration Q_DECLARE_METATYPE(IDL::Messages::JoystickCommand)
+//@copy-declaration Q_DECLARE_METATYPE(IDL::Messages::ExternalPlanCommand)
+//@copy-declaration Q_DECLARE_METATYPE(IDL::Messages::Flightplan)
+//@copy-declaration Q_DECLARE_METATYPE(IDL::Messages::ModeChangeCommand)
+
+//@copy-declaration Q_DECLARE_METATYPE(IDL::Messages::DualHopGuidance)
+

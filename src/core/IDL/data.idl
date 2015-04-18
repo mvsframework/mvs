@@ -1,0 +1,256 @@
+// 
+//  Copyright © 2015 Claus Christmann <hcc |ä| gatech.edu>.
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+// 
+ 
+/*
+ * Use the RTI Launcher or this CLI command to generate the proper C++ code from
+ * this IDL file:
+ * /opt/RTI/ndds.4.5e/scripts/rtiddsgen  -language C++ -namespace -stringSize 255 -sequenceSize 100 -replace <path_to>/ddsMessages.idl
+ *
+ */
+
+//@copy-declaration #include <QtCore/QMetaType>
+
+module IDL {
+
+const long MAX_STRING_LENGTH = 256;
+
+module Commands {
+
+enum CommandTypes {
+  NULL_COMMAND // the null command has no effect.
+  // Node Level commands (affecting the Node::stateMachine)
+  ,N_JOIN_NETWORK
+  ,N_LEAVE_NETWORK
+//   ,N_SHUT_DOWN
+
+  ,V_ENABLE_JOYSTICK_CONTROL
+  ,V_EXECUTE_EXTERNAL_PLAN
+  ,V_LOITER
+  
+  ,D_V_ENTER_OPERTAIONAL_LOITER // a debug command
+  ,D_V_ENTER_DUAL_HOP // a debug command
+//   ,V_CONTINUE_MOTION
+//   ,U_ENABLE_REMOTE_PILOTAGE
+//   ,U_ENABLE_AUTONOMOUS_OPERATION //NOTE: Review of the state chart showed that this is "just" a join command issued from remotePilotage. Hence it has been removed.
+};
+
+}; // end module Commands
+
+
+
+module Data {
+
+//@copy // A 128-bit identifyer for Nodes.
+typedef sequence<octet,16> NodeId;
+
+//@copy // A 32-bit identifyer for Elements (Obstacles, Targets, etc.) in the Environement
+typedef unsigned long ElementId;
+
+//@copy // A 32-bit identifyer for Locations (e.g. Waypoints) in the Environement
+typedef unsigned long LocationId;
+
+typedef sequence<octet,16> Md5Hash;
+
+
+enum NodeType {
+  NODE_TYPE_UNKNOWN = 0,
+  NODE_TYPE_BASIC,    // A "Basic node.
+  NODE_TYPE_VEHICLE,  // A "Vehicle" node.
+  NODE_TYPE_GCS       // A "ControlStation" node.
+};
+
+
+
+enum StateDescriptorId {
+  STATE_ID_NOT_APPLICABLE = 0, // for other states, compare to NULL
+
+// SimItem States
+  STATE_ID_I_RUNNING,
+  STATE_ID_I_RUNNING_REGION, // (A Qt necessity)
+
+// Node States
+  STATE_ID_N_STANDBY,         // 
+  STATE_ID_N_ACTIVE,          // 
+  STATE_ID_N_ACTIVE_REGION,   // (A Qt necessity)
+  STATE_ID_N_JOINING,         // Activity
+  STATE_ID_N_OPERATIONAL,     // 
+  STATE_ID_N_LEAVING,         // Activity
+
+// Datalink States
+  STATE_ID_D_LINK_DOWN,       // ownship: datalink is off; blip: n/a
+  STATE_ID_D_LINK_UP,         // ownship: datalink is on, connected to a blip; blip: connected to a blip
+  STATE_ID_D_NO_LINK,         // ownship: datalink is on, no connection to any blip; blip: not connected to the ownship
+  
+// Vehicle States
+  STATE_ID_V_AUTONOMOUS,
+  STATE_ID_V_MOVING_TO_ROUTE, // Work (?)
+  STATE_ID_V_MOVING_TO_HOME,  // Work (?)
+  STATE_ID_V_PILOTED,
+  STATE_ID_V_EXECUTING,       // Activity
+  STATE_ID_V_EXTERNAL_PLAN,   // Work (?)
+  STATE_ID_V_LOITER,
+  STATE_ID_V_JOYSTICK,
+  
+  STATE_ID_V_LOST_LINK, // Activity
+  STATE_ID_V_MOVING_TO_CONTROLSTATION, // Work (?)
+  
+  STATE_ID_V_DUAL_HOP_GUIDANCE,   // Work (?)
+  STATE_ID_V_PERIMETER_GUIDANCE,  // Work (?)
+  STATE_ID_V_DYNAMIC_GUIDANCE,    // Work (?)
+
+// GustInterface States
+  STATE_ID_GUST_INACTIVE,        // The connection to GUST is inactive.
+  STATE_ID_GUST_ACTIVE,          // The connection to GUST is active.
+  STATE_ID_GUST_TRAJ_REGION,     // (A Qt necessity)
+  STATE_ID_GUST_TRAJ_INITIAL,    // 
+  STATE_ID_GUST_TRAJ_CRUISE,     // 
+  STATE_ID_GUST_TRAJ_STOP,       // 
+  STATE_ID_GUST_GUIDANCE_REGION, // (A Qt necessity)
+  STATE_ID_GUST_GUIDANCE_GO,     // The GUST vehicle is moving.
+  STATE_ID_GUST_GUIDANCE_STOP,   // The Gust vehicle is hovering/loitering.
+  
+// other
+  STATE_ID_BOGUS
+  
+};
+
+//@copy // This resembles an unbounded array of StateDescriptorIds. 
+//@copy // However, as a state can either be in the current configuration or not,
+//@copy // technically a bitfield, with the StateDescriptorId enum value defining its
+//@copy // position, should be a better (in the sense of smaller) choice...
+//@copy // BUT it is most likely harder to implement... So let's make this a TODO
+typedef sequence<StateDescriptorId> ModeDescriptor;
+
+
+// struct Header {
+//   NodeId  sender;  // the universally unique id of the sending node's publisher 
+//   NodeType type; // the type of the sending node
+//   ModeDescriptor mode; // the mode (i.e. the collection of states) a node is currently in
+// };
+
+struct Position_LLA_rad {
+  double latitude; // Latitude in [radian]
+  double longitude;// Longitude in [radian]
+  double altitude; // Altitude in [m]  (above referecen ellipsoid)
+};
+
+struct Position_LLA_deg {
+  double latitude; // Latitude in [degrees]
+  double longitude;// Longitude in [degress]
+  double altitude; // Altitude in [m]  (above reference ellipsoid)
+};
+
+struct Position_ECEF {
+  double x;// X-axis position in [m] (wrt. the ECEF frame)
+  double y;// Y-axis position in [m] (wrt. the ECEF frame)
+  double z;// Z-axis position in [m] (wrt. the ECEF frame)
+};
+
+struct Position_Datum {
+  double x;// X-axis position in [m] (wrt. the Datum frame)
+  double y;// Y-axis position in [m] (wrt. the Datum frame)
+  double z;// Z-axis position in [m] (wrt. the Datum frame)
+};
+
+
+struct Velocity_Datum {
+  double x_dot;// X-axis speed component in [m/s] (wrt. the Datum frame)
+  double y_dot;// Y-axis speed component in [m/s] (wrt. the Datum frame)
+  double z_dot;// Z-axis speed component in [m/s] (wrt. the Datum frame)
+}; 
+
+struct Velocity_Body {
+  double u;// X-axis speed component in [m/s] (wrt. the Body frame)
+  double v;// Y-axis speed component in [m/s] (wrt. the Body frame)
+  double w;// Z-axis speed component in [m/s] (wrt. the Body frame)
+};
+
+struct EulerAngles_rad {
+  double phi;  // roll-angle in [radian] (wrt. the Datum frame)
+  double theta;// pitch-angle in [radian] (wrt. the Datum frame)
+  double psi;  // yaw-angle in [radian] (wrt. the Datum frame)
+};
+
+struct EulerAngles_deg {
+  double phi;  // roll-angle in [degrees] (wrt. the Datum frame)
+  double theta;// pitch-angle in [degrees] (wrt. the Datum frame)
+  double psi;  // yaw-angle in [degrees] (wrt. the Datum frame)
+};
+
+struct BodyAngularRates_rad {
+  double p;// roll rate in [radian/s]
+  double q;// pitch rate in [radian/s]
+  double r;// yaw rate in [radian/s]
+};
+
+struct BodyAngularRates_deg {
+  double p;// roll rate in [degrees/s]
+  double q;// pitch rate in [degrees/s]
+  double r;// yaw rate in [degrees/s]
+};
+
+struct FrameOfReference {
+  Position_ECEF   origin;
+  EulerAngles_deg orientation;
+};
+
+//@copy-declaration /** \class JoystickAxes
+//@copy-declaration  * \brief The plain (interpolated) joystick axis data.
+//@copy-declaration  */
+
+
+
+struct JoystickAxes {
+  // the different axis/channels
+  double rollStick;    // roll axis setting, in [-1,1]  
+  double pitchStick;   // pitch axis setting, in [-1,1]
+  double rudderPeddal; // yaw axis setting, in [-1,1]
+  double throttleLever;// throttle axis setting, in [-1,1]
+  double aux[2];       // auxiliary axis setting, in [-1,1]
+};
+
+//@copy-declaration /** \class JoystickActions
+//@copy-declaration  * \brief The encoded actions which can be triggered through a joystick.
+//@copy-declaration  */
+struct JoystickActions {
+  boolean dash ;
+  boolean altitudeHold ;
+};
+
+struct JoystickData  {
+  JoystickAxes     axes;    // access to the plain (interpolated) joystick axis data
+  JoystickActions  actions; // access to encoded actions which can be triggered through a joystick.
+};
+
+struct Waypoint {
+  Position_Datum position; // the location of the waypoint
+};
+
+//@copy-declaration /** \class Flightplan
+//@copy-declaration  * \brief A flightplan for a vehicle.
+//@copy-declaration  * \note Use TypeSupport::create_data() and TypeSupport::delete_data()
+//@copy-declaration  * instead of \c new and \c delete in order to ensure deep allocation and 
+//@copy-declaration  * destruction of sequences. 
+//@copy-declaration  */
+struct Flightplan {
+  Md5Hash hash; // A hash over the waypoint coordinates in the Flightplan.
+  sequence<Waypoint> waypoints;
+};
+
+}; // end module Data
+}; // end module IDL
+
+

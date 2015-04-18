@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ /*
+ *  Copyright © 2015 Claus Christmann <hcc |ä| gatech.edu>.
+ *  
+ */
+-->
+<Configuration
+  xmlns="http://uav.ae.gatech.edu/XML/SAI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://uav.ae.gatech.edu/XML/SAI ../../XSD/sai.xsd"
+>
+
+<DatumNED>
+  <coordinates>-84.38453231630939,33.759579111458,00.0</coordinates>
+</DatumNED>
+
+<Arena>
+  <!--  Downtown  -->
+<!--  <coordinates>
+        -84.38907390071307,33.758287753606,0 -84.38085661618895,33.75827967530952,0 -84.38082092928302,33.7632216919809,0 -84.38919397650393,33.76327330531792,0 -84.38907390071307,33.758287753606,0 
+  </coordinates>-->
+  
+  <!-- Expanded Downtown -->
+  <coordinates>
+        -84.3929241195227,33.75521764046228,0 -84.37840789102927,33.75521764046228,0 -84.37840789102927,33.76626469298076,0 -84.3929241195227,33.76626469298076,0 -84.3929241195227,33.75521764046228,0 
+  </coordinates>
+
+</Arena>
+
+<Obstacles>
+  <href>KML/obstacles.kml</href>
+</Obstacles>
+
+<Nodes>
+  <UAV><!-- Peru0 -->
+    <name>Peru0</name>
+    <coordinates>-84.38504009447274,33.75961449193584,0</coordinates>
+    <startupDelay>1003</startupDelay>
+    <dds>
+      <name>DDS</name>
+    </dds>
+    <camera>
+      <hFov>80</hFov>
+    </camera>
+    <gust>
+      <name>GUST Interface</name>
+      <gustIp>192.168.54.150</gustIp>
+      <gustUdpPort>3010</gustUdpPort>
+      <localIp>192.168.54.150</localIp>
+      <localUdpPort>2010</localUdpPort>
+      <inpFilePath>~/svn/work/rmax</inpFilePath>
+      <manAugment><!-- using the defaults -->
+        <anom />
+        <jerk />
+        <vcHzGo />
+        <vcHzStop />
+        <vcHzSide />        
+      </manAugment>
+      <params_mr>
+        <damp />
+      </params_mr>
+    </gust>
+  </UAV>
+  <UAV><!-- Peru1 -->
+    <name>Peru1</name>
+    <coordinates>-84.38608117429675,33.76157948586032,0</coordinates>
+    <startupDelay>4011</startupDelay>
+    <dds>
+      <name>DDS</name>
+    </dds>
+    <gust>
+      <name>GUST Interface</name>
+      <gustIp>192.168.54.150</gustIp>
+      <gustUdpPort>3040</gustUdpPort>
+      <localIp>192.168.54.150</localIp>
+      <localUdpPort>2040</localUdpPort>
+      <inpFilePath>~/svn/work/rmax</inpFilePath>
+      <manAugment><!-- using the defaults -->
+        <anom />
+        <jerk />
+        <vcHzGo />
+        <vcHzStop />
+        <vcHzSide />        
+      </manAugment>
+      <params_mr>
+        <damp />
+      </params_mr>
+    </gust>
+  </UAV>
+  <UAV><!-- Peru2 -->
+    <name>Peru2</name>
+    <coordinates>-84.38578119065617,33.76028499143538,0</coordinates>
+    <startupDelay>5013</startupDelay>
+    <dds>
+      <name>DDS</name>
+    </dds>
+    <camera>
+      <hFov>80</hFov>
+    </camera>
+    <gust>
+      <name>GUST Interface</name>
+      <gustIp>192.168.54.150</gustIp>
+      <gustUdpPort>3050</gustUdpPort>
+      <localIp>192.168.54.150</localIp>
+      <localUdpPort>2050</localUdpPort>
+      <inpFilePath>~/svn/work/rmax</inpFilePath>
+      <manAugment><!-- using the defaults -->
+        <anom />
+        <jerk />
+        <vcHzGo />
+        <vcHzStop />
+        <vcHzSide />        
+      </manAugment>
+      <params_mr>
+        <damp />
+      </params_mr>
+    </gust>
+  </UAV>
+  <UAV><!-- Peru3 -->
+    <name>Peru3</name>
+    <coordinates>-84.38609722334994,33.7621742710947,0</coordinates>
+    <startupDelay>6017</startupDelay>
+    <dds>
+      <name>DDS</name>
+    </dds>
+    <camera>
+      <hFov>80</hFov>
+    </camera>
+    <gust>
+      <name>GUST Interface</name>
+      <gustIp>192.168.54.150</gustIp>
+      <gustUdpPort>3060</gustUdpPort>
+      <localIp>192.168.54.150</localIp>
+      <localUdpPort>2060</localUdpPort>
+      <inpFilePath>~/svn/work/rmax</inpFilePath>
+      <manAugment><!-- using the defaults -->
+        <anom />
+        <jerk />
+        <vcHzGo />
+        <vcHzStop />
+        <vcHzSide />        
+      </manAugment>
+      <params_mr>
+        <damp />
+      </params_mr>
+    </gust>
+  </UAV>
+  <UAV><!-- Peru4 -->
+    <name>Peru4</name>
+    <coordinates>-84.38456511651836,33.75917337933702,0</coordinates>
+    <startupDelay>7019</startupDelay>
+    <dds>
+      <name>DDS</name>
+    </dds>
+    <camera>
+      <hFov>80</hFov>
+    </camera>
+    <gust>
+      <name>GUST Interface</name>
+      <gustIp>192.168.54.150</gustIp>
+      <gustUdpPort>3070</gustUdpPort>
+      <localIp>192.168.54.150</localIp>
+      <localUdpPort>2070</localUdpPort>
+      <inpFilePath>~/svn/work/rmax</inpFilePath>
+      <manAugment><!-- using the defaults -->
+        <anom />
+        <jerk />
+        <vcHzGo />
+        <vcHzStop />
+        <vcHzSide />        
+      </manAugment>
+      <params_mr>
+        <damp />
+      </params_mr>
+    </gust>
+  </UAV>
+  <UAV><!-- Peru5 -->
+    <name>Peru5</name>
+    <coordinates>-84.38456511651836,33.75917337933702,0</coordinates>
+    <startupDelay>8023</startupDelay>
+    <dds>
+      <name>DDS</name>
+    </dds>
+    <camera>
+      <hFov>80</hFov>
+    </camera>
+    <gust>
+      <name>GUST Interface</name>
+      <gustIp>192.168.54.150</gustIp>
+      <gustUdpPort>3080</gustUdpPort>
+      <localIp>192.168.54.150</localIp>
+      <localUdpPort>2080</localUdpPort>
+      <inpFilePath>~/svn/work/rmax</inpFilePath>
+      <manAugment><!-- using the defaults -->
+        <anom />
+        <jerk />
+        <vcHzGo />
+        <vcHzStop />
+        <vcHzSide />        
+      </manAugment>
+      <params_mr>
+        <damp />
+      </params_mr>
+    </gust>
+  </UAV>  
+  <UAV><!-- Chile0 -->
+    <name>Chile0</name>
+    <coordinates>-84.38445532212944,33.76085057958649,0</coordinates>
+    <startupDelay>2005</startupDelay>
+    <dds>
+      <name>DDS</name>
+    </dds>
+    <gust>
+      <name>GUST Interface</name>
+      <gustIp>192.168.54.150</gustIp>
+      <gustUdpPort>3020</gustUdpPort>
+      <localIp>192.168.54.150</localIp>
+      <localUdpPort>2020</localUdpPort>
+      <inpFilePath>~/svn/work/rmax</inpFilePath>
+      <manAugment><!-- using the defaults -->
+        <anom />
+        <jerk />
+        <vcHzGo />
+        <vcHzStop />
+        <vcHzSide />        
+      </manAugment>
+      <params_mr>
+        <damp />
+      </params_mr>
+    </gust>
+  </UAV>
+  <UAV><!-- Chile1 -->
+    <name>Chile1</name>
+    <coordinates>-84.38456511651836,33.75917337933702,0</coordinates>
+    <startupDelay>9029</startupDelay>
+    <dds>
+      <name>DDS</name>
+    </dds>
+    <camera>
+      <hFov>80</hFov>
+    </camera>
+    <gust>
+      <name>GUST Interface</name>
+      <gustIp>192.168.54.150</gustIp>
+      <gustUdpPort>3090</gustUdpPort>
+      <localIp>192.168.54.150</localIp>
+      <localUdpPort>2090</localUdpPort>
+      <inpFilePath>~/svn/work/rmax</inpFilePath>
+      <manAugment><!-- using the defaults -->
+        <anom />
+        <jerk />
+        <vcHzGo />
+        <vcHzStop />
+        <vcHzSide />        
+      </manAugment>
+      <params_mr>
+        <damp />
+      </params_mr>
+    </gust>
+  </UAV>
+  <UAV><!-- Ecuador0 -->
+    <name>Ecuador0</name>
+    <coordinates>-84.38400446233371,33.76211009231169,0</coordinates>
+    <startupDelay>3007</startupDelay>
+    <dds>
+      <name>DDS</name>
+    </dds>
+    <gust>
+      <name>GUST Interface</name>
+      <gustIp>192.168.54.150</gustIp>
+      <gustUdpPort>3030</gustUdpPort>
+      <localIp>192.168.54.150</localIp>
+      <localUdpPort>2030</localUdpPort>
+      <inpFilePath>~/svn/work/rmax</inpFilePath>
+      <manAugment><!-- using the defaults -->
+        <anom />
+        <jerk />
+        <vcHzGo />
+        <vcHzStop />
+        <vcHzSide />        
+      </manAugment>
+      <params_mr>
+        <damp />
+      </params_mr>
+    </gust>
+  </UAV>
+  <UAV><!-- Ecuador1 -->
+    <name>Ecuador1</name>
+    <coordinates>-84.38456511651836,33.75917337933702,0</coordinates>
+    <startupDelay>10031</startupDelay>
+    <dds>
+      <name>DDS</name>
+    </dds>
+    <camera>
+      <hFov>80</hFov>
+    </camera>
+    <gust>
+      <name>GUST Interface</name>
+      <gustIp>192.168.54.150</gustIp>
+      <gustUdpPort>3100</gustUdpPort>
+      <localIp>192.168.54.150</localIp>
+      <localUdpPort>2100</localUdpPort>
+      <inpFilePath>~/svn/work/rmax</inpFilePath>
+      <manAugment><!-- using the defaults -->
+        <anom />
+        <jerk />
+        <vcHzGo />
+        <vcHzStop />
+        <vcHzSide />        
+      </manAugment>
+      <params_mr>
+        <damp />
+      </params_mr>
+    </gust>
+  </UAV>
+
+  
+</Nodes>
+
+
+   
+</Configuration>

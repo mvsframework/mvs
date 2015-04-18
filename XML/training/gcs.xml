@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ /*
+ *  Copyright © 2015 Claus Christmann <hcc |ä| gatech.edu>.
+ *  
+ */
+-->
+<Configuration
+  xmlns="http://uav.ae.gatech.edu/XML/SAI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://uav.ae.gatech.edu/XML/SAI ../../XSD/sai.xsd"
+>
+
+<DatumNED>
+  <!--  Downtown  -->
+ <coordinates>-84.38453231630939,33.759579111458,00.0</coordinates>
+  
+  <!-- McKenna MOUT -->
+<!--   <coordinates>-84.80505663562711,32.37080242806627,00.0</coordinates> -->
+</DatumNED>
+
+<Arena>
+  <!-- Training grounds in ATL -->
+  <coordinates>
+    -84.39052716628132,33.75688219359806,0 -84.38150721445373,33.75673721012604,0 -84.38129430284928,33.7619711767231,0 -84.39063195163516,33.76185640311421,0 -84.39052716628132,33.75688219359806,0 
+  </coordinates> 
+</Arena>
+
+<Obstacles>
+  <href>KML/TrainingGrounds.kml</href>
+  <!--<href>KML/obstacles.kml</href>-->
+  <!--<href>KML/McKenna_MOUT.kml</href> -->
+</Obstacles>
+
+<Nodes>
+  <ControlStation>
+    <name>GCS2</name>
+    <!--  Downtown  -->
+    <coordinates>-84.38456511651836,33.75917337933702,0</coordinates>
+    <!-- McKenna MOUT 
+    <coordinates>-84.80505663562711,32.37080242806627,0</coordinates> -->
+   
+    <startupDelay>0002</startupDelay>
+    <dds>
+      <name>DDS</name>
+    </dds>
+    <camera>
+      <hFov>120</hFov> <!-- approx. human binocular vision -->
+    </camera>
+    <hmi>
+      <name>HMI</name>
+      <Joystick>
+        <name>GREAT PLANES InterLink Elite</name>
+        <Roll>
+          <axis>0</axis>
+          <max>24660</max>
+          <min>-24999</min>
+        </Roll>
+        <Pitch>
+          <axis>1</axis>
+          <max>22633</max>
+          <min>-22634</min>
+        </Pitch>
+        <Yaw>
+          <axis>4</axis>
+          <max>24998</max>
+          <min>-21958</min>
+        </Yaw>
+        <Throttle>
+          <axis>2</axis>
+          <reverse /> <!-- use the default value "true" -->
+          <max>22971</max>
+          <min>-20607</min>
+        </Throttle>
+        <button action="altitudeHold">0</button>
+        <button action="dash">1</button>
+        <button action="extremes">2</button>
+        <autoRepeatDelay /> <!-- use the default value "250"-->
+      </Joystick>
+    </hmi>
+  </ControlStation>
+</Nodes>
+   
+</Configuration>

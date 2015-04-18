@@ -1,0 +1,305 @@
+/** 
+ *  Copyright © 2015 Claus Christmann <hcc |ä| gatech.edu>.
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ */
+ 
+/** \page dependencies Dependencies of the simulator
+
+\tableofcontents
+
+There are a bunch of dependencies necessary to get the simulation going.
+
+\section dependencies_build_periphery Periphery dependencies
+
+These are the external dependencies to build the simulations periphery code, i.e.
+anything but the core library.
+
+\subsection dependency_cmake CMake 
+
+In order to configure the project, <tt>cmake</tt> needs to be available at 
+least in version 2.8.9. (This is necessary for the Qt 5 configuration.)
+
+For openSUSE:
+\code{.sh}
+burdell@suse:~> sudo zypper install cmake cmake-gui
+\endcode
+
+For Ubuntu:
+\code{.sh}
+burdell@ubuntu:~/Downloads> sudo apt-get install cmake cmake-gui
+\endcode
+
+\note Ubuntu 12.04 LTS Precise Pangoline does not have a matching version in
+its repositories. It might be necessary to either use the 12.10 Quantal
+Quetzal repositories or the sources from http://www.cmake.org/cmake/resources/software.html
+
+\subsection dependecies_gcc GNU Compiler Collection 
+
+As the simulator code uses some C++11 constructs and extensions, it is 
+recommended to use GCC 4.7.
+
+
+For openSUSE:
+\code{.sh}
+burdell@suse:~> sudo zypper install gcc47-c++
+\endcode
+
+For Ubuntu:
+\code{.sh}
+burdell@ubuntu:~/Downloads> sudo apt-get install build-essential gcc g++
+\endcode
+
+\note Ubuntu 12.04 LTS Precise Pangoline does not have a matching version in
+its repositories. It might be necessary to either use the 12.10 Quantal
+Quetzal repositories or the sources from http://gcc.gnu.org
+
+\subsection dependency_qt5 Qt 5
+
+The simulator is using Qt 5 which at the time of this writing (3/2013) is not
+yet widely available through package managers.
+
+\note Get the version matching the target computer's architecture. This example 
+is for 64bit Linux systems.
+
+\code{.sh}
+burdell@linux:~/Downloads> wget http://releases.qt-project.org/qt5/5.0.1/qt-linux-opensource-5.0.1-x86_64-offline.run
+burdell@linux:~/Downloads> chmod +x qt-linux-opensource-5.0.1-x86_64-offline.run
+burdell@linux:~/Downloads> ./qt-linux-opensource-5.0.1-x86_64-offline.run
+\endcode
+
+Note where Qt has been installed, e.g. <tt>~/Qt5.0.1</tt>, and find the 
+base directory for the Qt libraries, normally <tt>~/Qt5.0.1/5.0.1/gcc</tt> 
+for the 32 bit version and <tt>~/Qt5.0.1/5.0.1/gcc_64</tt> for the 64 bit 
+version.
+
+Set this directory in the top level <a href="../../CMakeLists.txt"><tt>CMakeLists.txt</tt></a>:
+\code{.cmake}
+set(BASE_DIR_QT5
+  "/home/burdell/Qt5.0.1/5.0.1/gcc_64"
+  CACHE FILEPATH "The full path to the Qt 5 installation."
+) 
+\endcode
+
+\subsection dependency_rtidds RTI Connext DDS
+
+The different nodes of the simulation communicate using RTI's Connext Data
+Distribution System. An overview is given at https://www.rti.com/products/dds
+
+Connext is a commercial non-free software for which RTI has granted the UAVRF
+a free university license for research purposes. The software can be 
+downloaded from https://www.rti.com/downloads/connext-files.html 
+(This download also includes a free 30-day evaluation license which won't be 
+needed.)
+
+\note Get the version matching the target computer's architecture. This example 
+is for 64bit Linux systems.
+
+\code{.sh}
+burdell@linux:~/Downloads> wget https://www.rti.com/eval/rtidds500/RTI_Connext_Professional_Edition-5.0.0-RHEL6_64_lic.sh
+burdell@linux:~/Downloads> chmod +x RTI_Connext_Professional_Edition-5.0.0-RHEL6_64_lic.sh
+burdell@linux:~/Downloads> ./RTI_Connext_Professional_Edition-5.0.0-RHEL6_64_lic.sh
+\endcode
+
+Note where Connext has been installed, e.g. <tt>~/RTI</tt>, and find the base
+directory for the DDS libraries, normally <tt>~/RTI/ndds.5.0.0</tt>.
+
+Set this directory in the top level <tt>CMakeLists.txt</tt>:
+\code{.cmake}
+set( BASE_DIR_DDS
+  "/home/burdell/RTI/ndds.5.0.0"
+  CACHE FILEPATH "The full path to the RTI Connext DDS installation."
+)
+\endcode 
+
+\subsection dependency_xerces The Apache Xerces™ Project
+
+Xerces is used to parse the XML input files which set up the simulation.
+
+For openSUSE :
+\code{.sh}
+burdell@suse:~> sudo zypper install libxerces-c-devel
+\endcode
+
+For Ubuntu:
+\code{.sh}
+burdell@ubuntu:~> sudo apt-get install libxerces-c-dev
+\endcode
+
+Furthermore, the configuration depends on a CMake find module for Xerces: 
+<tt>FindXerces-c.cmake</tt>. If no native module is available, the provided 
+one can be used.
+
+\subsection dependency_xsd CodeSynthesis XSD Compiler
+
+The XSD compiler by CodeSynthesis is used to parse XML code (with XSD 
+verification) and is available from 
+http://www.codesynthesis.com/products/xsd/download.xhtml if it is not available
+in the distro's repositories. (XSD introduces the dependecy on Xerces.)
+
+\note The XSD compiler v3.3.0 has a known bug: 
+<tt>/usr/include/xsd/cxx/zc-istream.txx</tt> is wrong in line 35. Replace
+<tt>setg (b, b, e);</tt> with <tt>this->setg (b, b, e);</tt> there.
+
+For openSUSE :
+\code{.sh}
+burdell@suse:~> sudo zypper install xsd
+\endcode
+
+
+\subsection dependency_boost Boost
+
+The simulator makes use of <tt>boost::geometry</tt> and <tt>boost::graph</tt>.
+The required version is >= 1.55 which at the time of this writing (1/2014)
+get the sources from http://www.boost.org/users/download/ .
+
+Note where boost has been installed, e.g. <tt>~/boost_1_55_0</tt>.
+
+Set this directory in the top level <tt>CMakeLists.txt</tt>:
+\code{.cmake}
+set( BASE_BIR_BOOST "/home/burdell/boost_1_55_0/"
+  CACHE "The full path to the Boost include directory."
+)
+\endcode
+
+\internal It seems that the only requirement from the periphery is boost/uuid.
+Could that be included?
+
+\subsection dependency_eigen Eigen 3
+
+For openSUSE:
+\code{.sh}
+burdell@suse:~> sudo zypper install libeigen3-devel
+\endcode
+
+\note <tt>libeigen3</tt> is available in the KDE repositories which might need to be 
+added first:
+\code{.sh}
+burdell@suse:~> sudo zypper addrepo -f http://download.opensuse.org/repositories/KDE:/Release:/410/openSUSE_12.3/ kde-4.10-core
+burdell@suse:~> sudo zypper addrepo -f http://download.opensuse.org/repositories/KDE:/Extra/KDE_Release_410_openSUSE_12.3/ kde-4.10-extra
+\endcode
+
+
+For Ubuntu:
+\code{.sh}
+burdell@ubuntu:~> sudo apt-get install libeigen3-dev
+\endcode
+
+\subsection dependency_sdl Simple Direct Media Layer (SDL)
+
+SDL is used to access joysticks.
+
+For openSUSE:
+\code{.sh}
+burdell@suse:~> sudo zypper install libsdl-devel
+\endcode
+
+
+\subsection dependency_matlab MATLAB (optional)
+
+Depending on the selcetion of the <tt>WITH_MATLAB</tt> configuration option
+the MATLAB engine can be/is used. For that to work, MATLAB must be available
+on the compiling and executing host. (The MATLAB engine, to be more precice.)
+
+To set this up, the configuration depends on a CMake find module for MATLAB:
+<tt>FindMatlab8.cmake</tt>. The provided module, which is taken from 
+http://www.rad.upenn.edu/sbia/software/basis/apidoc/latest/FindMATLAB_8cmake_source.html,
+can be used.
+
+
+Furthermore, configuration depends on a CMake find module for Eigen: 
+<tt>FindEigen3.cmake</tt>. If no native module is available, the provided 
+one can be used.
+
+\section dependency_provided Provided libraries
+
+There are some additional dependecies on other utility libraries. However,these
+are either self-made, adapted wrappers for otherwise public libraries, or 
+non publicly available. As such, they are provided in <tt>/src/3rdParty</tt>.
+
+\subsection dependency_amg AMG
+
+AMG is a simple library providing support for GIS related operations. 
+It should be provided
+
+Furthermore, the configuration depends on a CMake find module for AMG: 
+<tt>FindAmg.cmake</tt>. The provided module can be used.
+
+\subsection dependency_vroni VRONI
+
+VRONI is a non-free commercial libray written by Prof. Martin Held from 
+Universität Salzburg. Prof. Held granted the UAVRF a no-cost research licence
+for non-commercial use. 
+More about VRONI at http://www.cosy.sbg.ac.at/~held/projects/vroni/vroni.html
+
+Furthermore, the configuration depends on a CMake find module for VRONI: 
+<tt>FindVroni.cmake</tt>. The provided module can be used.
+
+\subsection dependency_visilibitiy VisiLibity
+
+VisiLibity is a LGPLv3 licensed library by Dr. Karl Obermeyer, available from 
+http://www.visilibity.org/ .
+The provided library in <tt>/src/3rdParty</tt> is a simple collection of the 
+provided functionality.
+
+Furthermore, the configuration depends on a CMake find module for VisiLibity: 
+<tt>FindVisiLibity.cmake</tt>. The provided module can be used.
+
+\section dependency_gust GUST
+
+GUST, the Georgia Tech UAV Simulation Tool, can be used to represent a Vehicle
+in the simulation, particularly through inherting from GustUav .
+As such, GUST needs to be available on the system to use GustUav .
+
+Furthermore, GUST introduces some additional dependencies, which can be a bit 
+peculiar as GUST is a 32bit-only application at this time:
+
+\subsection dependendy_opengl OpenGL and libPNG
+
+\internal Maybe these packages, too? : gcc-32bit gcc-c++-32bit
+
+For openSUSE x86_64:
+\code{.sh}
+burdell@suse:~> sudo zypper install Mesa-devel Mesa-devel-32bit freeglut-devel freeglut-devel-32bit fontconfig-devel-32bit libpng12-compat-devel-32bit
+burdell@suse:~> sudo zypper install libGLU-devel-32bit libX11-devel-32bit libXext-devel-32bit libXmu-devel-32bit libXi-devel-32bit libX11-devel-32bit libXi-devel-32bit libXinerama-devel-32bit libXcursor-devel-32bit libXft-devel-32bit libXext-devel-32bit libXrender-devel-32bit libfontconfig-devel-32bit libX11-devel-32bit libXmu-devel-32bit libXi-devel-32bit libXinerama-devel-32bit libXcursor-devel-32bit libXft-devel-32bit libXrender-devel-32bit libfontconfig-devel-32bit
+\endcode
+
+\note When installing the 32bit libs in openSUSE x86_64, it could be that not all symlinks are properly set, for example for libGLU.so.
+
+\code{.sh}
+burdell@suse:/usr/lib> sudo ln -s libGLU.so.1 libGLU.so
+\endcode
+
+Furthermore, it might be necessary to append the ld search path in order to find 
+some 3rd-party libraries provided with GUST (make sure to correct 
+<tt>GUST_PATH</tt> to your local path!):
+
+\code{.sh}
+burdell@suse:~> export GUST_PATH=~/svn/work
+burdell@suse:~> export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$GUST_PATH/central/x86-linux/lib
+\endcode
+
+Alternatively, alter your <tt>~/.bashrc</tt> to include
+\code{.sh}
+# GUST
+export GUST_PATH=~/svn/work
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$GUST_PATH/central/x86-linux/lib
+\endcode
+
+For Ubuntu
+\code{.sh}
+burdell@ubuntu:~/Downloads> sudo apt-get install freeglut3-dev
+\endcode
+
+*/

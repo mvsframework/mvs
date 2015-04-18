@@ -1,0 +1,289 @@
+<!--
+  
+   Copyright © 2015 Claus Christmann <hcc |ä| gatech.edu>.
+   
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+   
+   http://www.apache.org/licenses/LICENSE-2.0
+   
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+-->
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<schema 
+  xmlns="http://www.w3.org/2001/XMLSchema" 
+  xmlns:sai="http://uav.ae.gatech.edu/XML/SAI" 
+  targetNamespace="http://uav.ae.gatech.edu/XML/SAI" 
+  elementFormDefault="qualified" 
+>
+<!--<import namespace="http://www.omg.org/IDL-Mapped/" schemaLocation="settings.xsd"/>-->
+
+<!--  Dedicated Type Declarations -->
+
+<simpleType name="RawAxisValue_t">
+    <restriction base="integer">
+      <minInclusive value="-32786"/>
+      <maxInclusive value="32786"/>
+    </restriction>
+</simpleType>
+
+<complexType name="AxisMapping_t">
+  <sequence>
+    <element name="axis"    type="nonNegativeInteger" />
+    <element name="reverse" type="boolean" default="true"   minOccurs="0" /> <!-- default value is true, allowing to simply put a <reverse /> in the axis to enable axis reversal-->
+    <element name="max"     type="sai:RawAxisValue_t" default="32786"  />
+    <element name="center"  type="sai:RawAxisValue_t" default="0"      minOccurs="0"/>
+    <element name="min"     type="sai:RawAxisValue_t" default="-32786" />
+    <element name="deadband" type="nonNegativeInteger"      minOccurs="0" />
+    <element name="sensitivity" type="nonNegativeInteger"   minOccurs="0" />
+  </sequence>
+</complexType>
+
+<simpleType name="ButtonAction_t">
+  <restriction base="string">
+    <enumeration value="inop" />
+    <enumeration value="dash" />
+    <enumeration value="extremes" />
+    <enumeration value="altitudeHold" />
+  </restriction>
+</simpleType>
+
+<complexType name="ButtonMapping_t">
+  <simpleContent>
+    <extension base="nonNegativeInteger">
+      <attribute name="action" type="sai:ButtonAction_t" use="required" />
+    </extension>
+  </simpleContent>
+</complexType>
+
+<complexType name="Joystick_t">
+  <sequence>
+    <element name="name"      type="string"/>
+    <element name="Roll"      type="sai:AxisMapping_t" />
+    <element name="Pitch"     type="sai:AxisMapping_t" />
+    <element name="Yaw"       type="sai:AxisMapping_t" />
+    <element name="Throttle"  type="sai:AxisMapping_t" />
+    <element name="Aux"       type="sai:AxisMapping_t"   minOccurs="0" maxOccurs="2" />  
+    <element name="button"    type="sai:ButtonMapping_t" minOccurs="0" maxOccurs="16" />
+    <element name="autoRepeatDelay" type="nonNegativeInteger" default="250" minOccurs="0"/>
+  </sequence>
+  <attribute name="id" type="nonNegativeInteger" />
+</complexType>
+
+<complexType name="Lens_t">
+  <sequence>
+    <!-- horizontal Field-of-View -->
+    <element name="hFov" type="nonNegativeInteger" default="80" />
+    <!-- vertical Feild-of-View -->
+    <!--<element name="vFov" type="nonNegativeInteger" default="60" />-->
+  </sequence>
+</complexType>
+
+<simpleType name="Coordinates_t">
+  <list itemType="string"/>
+</simpleType>
+
+<simpleType name="KmlLink_t">
+  <restriction base="string" />
+</simpleType>
+
+<complexType name="Point_t">
+  <sequence>
+    <element name="coordinates" type="sai:Coordinates_t" />
+  </sequence>
+</complexType>
+
+<complexType name="Polygon_t">
+  <sequence>
+    <element name="coordinates" type="sai:Coordinates_t" />
+  </sequence>
+</complexType>
+
+<complexType name="Frame_t">
+  <choice>
+    <element name="href"   type="sai:KmlLink_t" />
+    <element name="coordinates" type="sai:Coordinates_t" />
+  </choice>
+</complexType>
+
+<complexType name="Arena_t">
+  <choice>
+    <element name="href"   type="sai:KmlLink_t" />
+    <element name="coordinates" type="sai:Coordinates_t" />
+  </choice>
+</complexType>
+
+<complexType name="ObstacleDatabase_t">
+  <sequence>
+    <element name="href"   type="sai:KmlLink_t" />
+  </sequence>
+</complexType>   
+
+
+
+
+<!-- Dealing with SimItem Types
+  =============================
+-->
+
+<complexType name="SimItem_t" abstract="true" >
+  <sequence>
+    <element name="name" type="string" default="(SimItem)"/>
+  </sequence>
+</complexType>
+ 
+<complexType name="Datalink_t">
+  <complexContent>
+    <extension base="sai:SimItem_t" />
+  </complexContent>
+</complexType>
+ 
+<complexType name="GenericNode_t">
+  <complexContent>
+    <extension base="sai:SimItem_t">
+      <sequence>
+        <element name="coordinates" type="sai:Coordinates_t" />
+        <!-- Time between initialization and starting, in [ms] -->
+        <element name="startupDelay" type="nonNegativeInteger" minOccurs="0" maxOccurs="1" /> 
+        <!-- The datalink interface -->
+        <element name="dds" type="sai:Datalink_t" minOccurs="0" maxOccurs="1"  />
+        <element name="camera" type="sai:Lens_t" minOccurs="0" maxOccurs="1"  />
+      </sequence>
+    </extension>
+  </complexContent>
+</complexType>
+
+<complexType name="GustInterface_t">
+  <complexContent>
+    <extension base="sai:SimItem_t">
+    <sequence>
+      <element name="gustIp"       type="string" />
+      <element name="gustUdpPort"  type="nonNegativeInteger" />
+      <element name="localIp"      type="string" />
+      <element name="localUdpPort" type="nonNegativeInteger" />
+      <element name="inpFilePath"  type="string" minOccurs="0" maxOccurs="1" />
+      
+      <!-- TODO: Make the interface to setting ESIM variables more generic!
+      It would be cool if instead of making an entry for every ESIM parameter 
+      we could use stuff like this:
+        <group name="manAugment">
+          <parameter name="anom">30</parameter>
+        </group>
+      But this would require a more elborate parser on the C side to get the 
+      name attribute and then create the proper 
+      "rc <group.name>.<parameter.name>=value" command for esim.
+      -->
+      <element name="manAugment" >
+        <complexType>
+          <sequence>
+            <element name="anom"      type="decimal" default="30"/>
+            <element name="jerk"      type="decimal" default="20"/>
+            <element name="vcHzGo"    type="decimal" default="10"/>
+            <element name="vcHzStop"  type="decimal" default="20"/>
+            <element name="vcHzSide"  type="decimal" default="5"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="params_mr" >
+        <complexType>
+          <sequence>
+            <element name="damp" type="decimal" default="0.5" />
+          </sequence>
+        </complexType>
+      </element>
+
+    </sequence>
+  </extension>
+  </complexContent>
+</complexType>
+ 
+
+<complexType name="HumanMachineInterface_t">
+  <complexContent>
+    <extension base="sai:SimItem_t">
+    <sequence>
+      <element name="Joystick" type="sai:Joystick_t" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+    </extension>
+  </complexContent>
+</complexType>
+ 
+
+<!-- Dealing with the Node Types
+  ==============================
+  There are currently two types of nodes: UAVs and Control Stations.
+  The GenericNode_t serves as a base class type for both, used with the 
+  extension element in the specific derived types. 
+  This requires tp set the 'generate-polymorphic' switch in CodeSynthesis XSD.
+-->
+
+
+<complexType name="GustUavNode_t" >
+  <complexContent>
+    <extension base="sai:GenericNode_t">
+      <sequence>
+        <element name="gust" type="sai:GustInterface_t" />
+      </sequence>
+    </extension>
+  </complexContent>
+</complexType>
+
+<complexType name="UavNode_t" >
+  <complexContent>
+    <extension base="sai:GustUavNode_t" />
+  </complexContent>
+</complexType>
+
+<complexType name="ControlStationNode_t" >
+  <complexContent>
+    <extension base="sai:GenericNode_t">
+      <sequence>
+        <element name="hmi" type="sai:HumanMachineInterface_t" />
+      </sequence>
+    </extension>
+  </complexContent>
+</complexType>
+
+<!-- Creating the NodeGroup_t and its elements
+  ============================================
+  As these are global root elements (direct children of <schema>, it is 
+  necessary to set the 'root-element-last' or 'root-elemet <type>' flags with 
+  CodeSynthesis XSD.
+-->
+<element name="AbstractSimItem" type="sai:SimItem_t" abstract="true" /> 
+<element name="AbstractNode"    type="sai:GenericNode_t" abstract="true" /> 
+<element name="UAV"             type="sai:UavNode_t"            substitutionGroup="sai:AbstractNode" />
+<element name="ControlStation"  type="sai:ControlStationNode_t" substitutionGroup="sai:AbstractNode" />
+
+<complexType name="NodeGroup_t">
+  <sequence>
+    <element ref="sai:AbstractNode" minOccurs="0" maxOccurs="unbounded" />
+  </sequence>
+</complexType>  
+
+<!--  The actual root element of this schema
+  ==========================================
+  Make sure that this element is the last global root element declared. This is
+  necessary to make the XSD switch 'root-element-last' work.
+-->
+<element name="Configuration">
+  <complexType>
+    <sequence>
+      
+      <element name="DatumNED"   type="sai:Frame_t" />
+      <element name="Arena"      type="sai:Arena_t" />
+      <element name="Obstacles"  type="sai:ObstacleDatabase_t" />
+      <element name="Nodes"      type="sai:NodeGroup_t" />
+            
+    </sequence>
+  </complexType>
+</element>
+  
+</schema>

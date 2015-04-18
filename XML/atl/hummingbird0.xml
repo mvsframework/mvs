@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ /*
+ *  Copyright © 2015 Claus Christmann <hcc |ä| gatech.edu>.
+ *  
+ */
+-->
+<Configuration
+  xmlns="http://uav.ae.gatech.edu/XML/SAI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://uav.ae.gatech.edu/XML/SAI ../../XSD/sai.xsd"
+>
+
+<DatumNED>
+  <coordinates>-84.38453231630939,33.759579111458,00.0</coordinates>
+</DatumNED>
+
+<Arena>
+  <!-- Even larger Downtown -->
+  <coordinates>
+    -84.39276630381262,33.75455551598409,0 -84.37930301246507,33.75439301298953,0 -84.37922056257533,33.76610816280019,0 -84.39266052524131,33.7662924935816,0 -84.39276630381262,33.75455551598409,0 
+  </coordinates>
+</Arena>
+
+<Obstacles>
+  <href>KML/obstacles.kml</href>
+</Obstacles>
+
+<Nodes>
+  <UAV>
+    <name>Hummingbird0</name>
+    <coordinates>-84.38502890196379,33.75929781773379,0 </coordinates>
+    <startupDelay>1003</startupDelay>
+    <dds>
+      <name>DDS</name>
+    </dds>
+    <camera>
+      <hFov>80</hFov>
+    </camera>
+    <gust>
+      <name>GUST Interface</name>
+      <gustIp>192.168.54.38</gustIp>
+      <gustUdpPort>3010</gustUdpPort>
+      <localIp>192.168.54.38</localIp>
+      <localUdpPort>2010</localUdpPort>
+      <inpFilePath>~/svn/work/rmax</inpFilePath>
+      <manAugment><!-- using the defaults -->
+        <anom />
+        <jerk />
+        <vcHzGo />
+        <vcHzStop />
+        <vcHzSide />        
+      </manAugment>
+      <params_mr>
+        <damp />
+      </params_mr>
+    </gust>
+  </UAV>
+</Nodes>
+
+
+   
+</Configuration>

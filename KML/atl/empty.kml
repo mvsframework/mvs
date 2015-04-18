@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2"
+     xmlns:gx="http://www.google.com/kml/ext/2.2"
+     xmlns:kml="http://www.opengis.net/kml/2.2"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:obstacles="http://uav.ae.gatech.eud/obstacles">
+<Document>
+  <name>obstacles.kml</name>
+  <Placemark>
+    <name>Boundary</name>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.39276630381262,33.75455551598409,0 -84.37930301246507,33.75439301298953,0 -84.37922056257533,33.76610816280019,0 -84.39266052524131,33.7662924935816,0 -84.39276630381262,33.75455551598409,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>  
+  <Placemark id="bldg000" obstacles:category="building">
+    <name>Building 0</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38377573726848,33.76186370065822,0 -84.38359507788738,33.76159439376854,0 -84.38359964873911,33.76147205836489,0 -84.38378687514455,33.76120674705341,0 -84.38360010805312,33.7611123810596,0 -84.38341141136478,33.76137646735983,0 -84.38327447671247,33.76143873928341,0 -84.38282271734929,33.76143099834462,0 -84.38281806955288,33.76161205679851,0 -84.38326394450859,33.76161979080122,0 -84.38339631397174,33.76167496027031,0 -84.38358432098598,33.76195161648186,0 -84.38377573726848,33.76186370065822,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+</Document>
+</kml>

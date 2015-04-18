@@ -1,0 +1,198 @@
+/** 
+ *  Copyright © 2015 Claus Christmann <hcc |ä| gatech.edu>.
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ */
+ 
+ 
+/** \page howto_send-messages How to send messages.
+In order to send messages, there needs to be an associated Topic. (See 
+\ref howto_add-a-topic for more details.)
+
+If there is a Topic, say <tt>helloTopic</tt> from \ref howto_add-a-topic, 
+sending messages is fairly straight forward.
+
+Sending the default message instance of the Topic is actually trivial:
+\code
+// modify the data currently held in the default message instance
+
+//NOTE: this is a worst-case example, as textMessage is a string object and 
+// hence some allocation voodoo has to happen to properly manage the related
+// memory. For all other types, the operator= works as expected.
+DDS_String_replace(helloMessage->textMessage, "Hello DDS World!"); 
+
+// simply send whatever is currently held in the registerd default message
+// instance (i.e. helloMessage )
+helloTopic->send();
+\endcode
+
+
+
+*/
+
+/** \page howto_receive-messages How to receive messages.
+In order to receive message, there needs to be an associated Topic. (See
+\ref howto_add-a-topic for more details.)
+
+Continuing with the example from \ref howto_add-a-topic, all that is necessary
+to receive messages is to define the processing function for the related Topic.
+
+However, using DDS as a communication system introduces multi-threading into 
+the application and, as the processing function can be thought of as callback,
+that has to be taken into consideration. For this Qt based application, this 
+mainly boils down to translating the callback-like behavior of the 
+DDSDataReaderListener (which is burried into the Topic) into an event in the 
+event queue of the processing QObject, i.e. the receiving Node.
+
+All that is necessary is a littel added code at the top of the already defined
+processing function:
+
+\code
+void Node::processReceivedMessage ( const NodeId& sender, const IDL::Messages::Hello& message )
+{
+  // the code necessary for the callback-to-event conversion:
+  //NOTE: There is no need to mess with mutexes or any of that ugly stuff!
+  
+  if( QThread::currentThread() != this->thread() )
+  {
+    QMetaObject::invokeMethod(this,"processReceivedMessage",Qt::QueuedConnection,
+          Q_ARG(NodeId,   sender),
+          Q_ARG(IDL::Messages::Hello, message )               
+        );
+    return;
+  }
+  
+  // the actual processing of the received message paylaod happens below:
+
+  std::cout << message.textMessage << std::endl;
+  
+}
+\endcode
+
+For details on what this does, see http://stackoverflow.com/q/15237179/1984137 .
+
+*/
+
+
+/** \page howto_add-a-topic How to add a new Topic
+ * 
+There are a only a few steps necessary to add a new topic, i.e. a new message,
+to a Node or any derived class. For this example, let's assume that the new
+Topic would be dealt with at the Node level.
+
+As we try to follow a private implementation scheme, let's aim at keeping the 
+Topic related entries hidden in the private implementation, i.e.in NodePrivate.
+
+- Create the necessary IDL message structure in IDL/messages.idl
+
+\code
+//@copy-declaration /** \class Hello
+//@copy-declaration  * \brief Hello Message Struct.
+//@copy-declaration  * 
+//@copy-declaration  * This is a message to exchange brief text/string based messages.
+//@copy-declaration  * 
+//@copy-declaration  * \note Use TypeSupport::create_data() and TypeSupport::delete_data()
+//@copy-declaration  * instead of \c new and \delete in order to ensure deep allocation and 
+//@copy-declaration  * destruction of sequences and strings. 
+//@copy-declaration  *\/
+struct Hello : MessageBase {
+  string<IDL::MAX_STRING_LENGTH> textMessage;
+};
+
+\endcode
+
+- Create the (private) member variables associated with the topic in node_p.h
+
+\code
+// The topic for exchanging 'Hello' messages. 
+Topic<IDL::Messages::Hello,TopicOptions::SendReceive>* helloTopic = nullptr;
+
+// A pointer to the struct used to send 'Hello' messages.
+IDL::Messages::Hello* helloMessage = nullptr;
+
+// The instance handle for 'Hello' messages send by the ownship.
+DDS_InstanceHandle_t  ownshipHelloInstanceHandle = DDS_HANDLE_NIL;
+\endcode
+
+- Initialize the topic in NodePrivate::initializeDatalink() in node.cpp
+  The Topic name usually is the same name as the message type name.
+
+\code
+{// initialize 'Hello' topic
+  helloTopic = new Topic<IDL::Messages::Hello,TopicOptions::SendReceive>
+    ("Hello",dds->participant(),dds->publisher(),dds->subscriber(),q);
+
+  helloMessage = IDL::Messages::Hello::TypeSupport::create_data();
+  helloMessage->senderId = nodeId; //NOTE: senderId is part of IDL::Messages::MessageBase
+  
+  ownshipHelloInstanceHandle = helloTopic->writer()->register_instance(*helloMessage);
+  
+  //NOTE: registering the defaults is optional, but allows one to use 
+  // helloTopic.send() without arguments.
+  helloTopic->registerDefaults(helloMessage, &ownshipHelloInstanceHandle);
+}
+\endcode
+
+- Uninitialize the topic in NodePrivate::unInitializeNode() in node.cpp
+  In this step it is particularly important to use the proper delete_\<..\> 
+  methods from RIT to fully deallocate any nested pointers, etc.
+
+\code
+{// uninitialize 'Hello' topic
+  helloTopic->writer()->unregister_instance(*helloMessage, ownshipHelloInstanceHandle);
+  ownshipHelloInstanceHandle = DDS_HANDLE_NIL;
+
+  IDL::Messages::Hello::TypeSupport::delete_data(helloMessage);
+  helloMessage = nullptr;
+  
+  delete helloTopic;
+  helloTopic = nullptr;
+}
+\endcode
+
+- Declare the callback function for the (auto-generated) listeners in node.h
+  If the selected TopicOptions imply the need to process incomming data 
+  (i.e. TopicOptions::Receive or TopicOptions::SendReceive), it is necessary
+  to provice a callback function to deal with incomming messages. As the Topic
+  template class is a friend of Node, the access level of the callback function
+  doesn't matter, although \c protected seems to be appropriate.
+
+\code
+virtual void processReceivedMessage(NodeId const & sender, IDL::Messages::Hello const & message);
+\endcode
+
+- Declare the callback function in node.cpp to process received messages
+
+\code
+void Node::processReceivedMessage ( const NodeId& sender, const IDL::Messages::Hello& message );
+\endcode
+
+Now you are ready to send and receive messages in the format given by
+IDL::Messages::Hello.
+
+- \subpage howto_send-messages
+- \subpage howto_receive-messages
+
+*/
+
+/** \page howto_create-a-new-simitem How to create a new SimItem-based class.
+
+Start by copying the code from the DerivedItem, comprised of three
+files: template_deriveditem.h, template_deriveditem_p.h, and 
+template_deriveditem.cpp, rename the files and replace 
+\c DerivedItem  with the name of your new class.
+
+Happy coding, and keep the PIMPL in mind.
+*/
+

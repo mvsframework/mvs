@@ -1,0 +1,133 @@
+/** 
+ *  Copyright © 2015 Claus Christmann <hcc |ä| gatech.edu>.
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ */
+ 
+ /** \page gust Georgia Tech UAV Simulation Tool (GUST)
+
+GUST, the Georiga Tech UAV Simulation Tool, is software environment used by the
+Georgie Tech UAV Research Facility to simulated and operate UAVs.
+
+Although GUST can be used as a complete standalone simulator for UAVs, 
+completely capable of all GNC functionalitites, including formation flight, 
+path planning, obstacle avoidance, etc., in the  connection with MVS it is used 
+as a high-fidelity represenation of a UAV. 
+
+MVS interacts with GUST by means of UDP network traffic, using the GUST datalink
+messages and the related protocols. As such, it is important to correctly
+set up the interface for each MVS node that should utilize a GUST backend.
+
+If a node is intended to have a GUST instance attached to it, the node
+needs to be derived of GustUav and the corresponding XML configuration for that
+node needs to have a \<gust /\>-tag.
+
+An example for such a tag could be:
+\code
+<Nodes>
+  <UAV>
+    <name>Peru</name>
+    <!-- some element missing for brevity -->
+    <gust>
+      <name>GUST Interface</name>
+      <gustIp>192.168.54.150</gustIp>
+      <gustUdpPort>3020</gustUdpPort>
+      <localIp>192.168.54.150</localIp>
+      <localUdpPort>2020</localUdpPort>
+      <inpFilePath>~/svn/work/rmax</inpFilePath>
+      <manAugment><!-- using the defaults -->
+        <anom /> <!-- default is 30 -->
+        <jerk /> <!-- default is 20 -->
+        <vcHzGo /> <!-- default is 10 -->
+        <vcHzStop /> <!-- default is 20 -->
+        <vcHzSide /> <!-- default is 5 -->
+      </manAugment>
+    </gust>
+  </UAV>
+</Nodes>
+\endcode
+
+The different elements of that tag are:
+
+- \b name : This name will be used for (debugging) output. Messages originating
+  from within the GUST interface of MVS will be prepended by 
+  <code>[node name]/[gust name]</code>.
+- \b gustIp : This is the IP of the computer where GUST is running. MVS will 
+  direct traffic for GUST to this IP and it expects traffic from GUST to also 
+  come from that IP.
+- \b gustUdpPort : This is the port number for traffic directed from MVS to 
+  GUST. 
+- \b localIp : This is the IP of the computer that is running MVS. The GUST
+  interface for this node will expect traffic directed to it to originate from 
+  this IP.
+- \b localUdpPort : This is the port the GUST interface for this node will 
+  expect traffic directed to it to originate from.
+- \b inpFilePath : MVS will create a GUST input file at this location. This
+  autogenrated file will contain all the setup information GUST needs to 
+  establish the communication with MVS.
+- \b manAugment : This section contains the accerlations and other related 
+  values GUST will use when reacting to received joystick commands.
+  (Remember: flying a GUST UAV via the joystick interface is \e not comparable
+  to flying a R/C vehicle. The joystick is merely used to tell GUST about the
+  intentions of the (human) operator manipulating it.)
+
+
+Related to networking, \<gust /\>-tag serves the dual purpose of setting up the
+MVS side internally as well as creating a GUST input file setting up the GUST 
+side of the MVS-GUST communication. This input file will be created at the 
+location specified by <tt>inpFilePath</tt>, it will be named after the name of 
+the Node, prepended by the <tt>\@</tt> sign, and it will have an <tt>.inp</tt>
+file extension. In the example given above, this input file will be 
+<tt>~/svn/work/rmax/@peru.inp</tt>
+
+When starting GUST, this input file can bi directly used to initialize the GUST
+instance. Setting <tt>inpFilePath</tt> to the location of the <tt>rmax</tt> 
+executable of GUST allows the following simple call to get everything going:
+
+\code{.sh}
+burdell@peru:~/svn/work/rmax> ./rmax @peru
+\endcode
+
+
+During the initialization of GUST, watch the shell output for a message similar
+to the following.
+\code{.sh}
+ serial: Comport 14 Open SUCCESS (UDP Sockets listening at peru:3020 to 192.168.54.150:2020)
+\endcode
+
+For the communications between MVS and GUST to succeed, a certain 
+particularity must be noted: Although the XML tag <tt>gustIp</tt> is given, GUST
+will internally use the \e hostname to determine the sending IP. This can be 
+seen in the message as the GUST side is at <tt>peru:3020</tt> (as opposed to 
+<tt>192.168.54.150:3020</tt> which could have been expected from the XML).
+
+\note This means that the hostname, in this example <tt>peru</tt> \e must resolve
+to the IP given by <tt>gustIp</tt>!
+
+This can be easily checked using either <tt>ping</tt> or <tt>dig</tt>:
+\code{.sh}
+burdell@peru:~> ping peru -c 1
+PING peru.uavrf.ae.gatech.edu (192.168.54.150) 56(84) bytes of data.
+64 bytes from peru.uavrf.ae.gatech.edu (192.168.54.150): icmp_seq=1 ttl=64 time=0.022 ms
+
+--- peru.uavrf.ae.gatech.edu ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 0.022/0.022/0.022/0.000 ms
+\endcode
+
+\note If the name resolution fails, a simply workaround could be the use of the 
+host computers hostfile to hardcode the corresponding IP.
+
+*/
+

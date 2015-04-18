@@ -1,0 +1,220 @@
+/** 
+ *  Copyright © 2015 Claus Christmann <hcc |ä| gatech.edu>.
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ */
+ 
+ /** \page dds_entities Entities
+
+\tableofcontents
+
+Most of this information is copied directly from RTI's Users Manual for Connext.
+
+\section rti_4-1-1 Creating and Deleting Entities
+
+The main classes extend an abstract base class called an Entity. Every Entity 
+has a set of associated events known as statuses and a set of associated Quality
+of Service Policies (QosPolicies).
+
+Topics are created by the DomainParticipant (which in turn is created by the 
+DomainParticipantFactory, a static singleton provided by Connext).
+
+\code 
+DDSDomainParticipant::create_topic
+DDSDomainParticipant::delete_topic
+\endcode
+
+Each Entity obtained through  \c create_\<entity\>() must eventually be 
+deleted by calling \c delete_\<entity\>, or by calling 
+\c delete_contained_entities() .
+
+By default, all Entities are automatically created in the enabled state. This 
+means that as soon as the Entity is created, it is ready to be used. 
+
+\section rti-4-1-5 Listeners
+
+Each type of Entity has an associated Listener. A Listener represents a set of 
+functions that users may install to be called asynchronously when the state of 
+communication statuses change.
+
+The \c get_listener() operation returns the current Listener attached to the 
+Entity. The \c set_listener() operation installs a Listener on an Entity. The 
+Listener will only be invoked on the changes of statuses specified by the 
+accompanying mask. Only one listener can be attached to each Entity. If a 
+Listener was already attached, set_listener() will replace it with the new one.
+The \c get_listener() and \c set_listener() operations are directly provided by
+the DomainParticipant, Topic, Publisher, DataWriter, Subscriber, and DataReader 
+classes so that listeners and masks used in the argument list are specific to 
+each Entity.
+
+\subsection rti_4-4-2 Creating and Deleting Listeners
+
+There is no factory for creating or deleting a Listener; use the natural means 
+in each language binding, i.e. “new” or “delete” in C++ .
+
+For example:
+
+\code
+class HelloWorldListener : public DDSDataReaderListener {
+  virtual void on_data_available(DDSDataReader* reader);
+};
+
+void HelloWorldListener::on_data_available(DDSDataReader* reader)
+{
+  printf("received data\n");
+}
+
+// Create a Listener
+HelloWorldListener *reader_listener = NULL;
+reader_listener = new HelloWorldListener();
+
+// Delete a Listener
+delete reader_listener;
+\endcode
+
+A listener cannot be deleted until the entity it is attached to has been 
+deleted. For example, you must delete the DataReader before deleting the 
+DataReader’s listener. 
+
+\note Due to a thread-safety issue, the destruction of a 
+DomainParticipantListener from an enabled DomainParticipant should be 
+avoided—even if the DomainParticipantListener has been removed from the 
+DomainParticipant.
+
+*/
+
+/** \page dds_topics Topics
+This is taken from Chapter 5 of RTI's Users Manual.
+
+For a DataWriter and DataReader to communicate, they need to use the same Topic.
+A Topic includes a name and an association with a user data type that has been 
+registered with Connext. Topic names are how different parts of the 
+communication system find each other. Topics are named streams of data of the 
+same data type. DataWriters publish samples into the stream; DataReaders 
+subscribe to data from the stream. More than one Topic can use the same user 
+data type, but each Topic needs a unique name.
+
+Topics, DataWriters, and DataReaders relate to each other as follows:
+
+\li Multiple Topics (each with a unique name) can use the same user data type.
+
+\li Applications may have multiple DataWriters for each Topic.
+
+\li Applications may have multiple DataReaders for each Topic.
+
+\li DataWriters and DataReaders must be associated with the same Topic in order 
+for them to be connected.
+
+\li Topics are created and deleted by a DomainParticipant, and as such, are 
+owned by that DomainParticipant. When two applications (DomainParticipants) want
+to use the same Topic, they must both create the Topic (even if the applications
+are on the same node).
+
+\note You cannot delete a Topic if there are any existing DataReaders or 
+DataWriters (belonging to the same DomainParticipant) that are still using it.
+All DataReaders and DataWriters associated with the Topic must be deleted first.
+
+*/
+
+/** \page dds_sending Sending Data
+This is taken from Chapter 6 of RTI's Users Manual.
+\tableofcontents
+
+\section rti_6-2 Publishers
+An application that intends to publish information needs the following Entities:
+- DomainParticipant
+- Topic
+- Publisher
+- DataWriter
+
+All Entities have a corresponding specialized Listener and a
+
+*/
+
+/** \page dds_receiving Receiving Data 
+\ref  howto_receive-messages
+*/
+
+/** \page dds_subscriberListener SubscriberListener
+
+The DATA_ON_READERS status of a Subscriber takes precedence over the
+DATA_AVAILABLE status of any of its DataReaders. Thus, when data arrives for a 
+DataReader, the on_data_on_readers() operation of the SubscriberListener will be
+called instead of the on_data_available() operation of the 
+DataReaderListener—assuming that the Subscriber has a Listener installed that is
+enabled to handle changes in the DATA_ON_READERS status.
+
+\note In the SubscriberListener’s \c on_data_on_readers() operation, you may 
+choose to call \c notify_datareaders(), which in turn may cause the 
+DataReaderListener’s \c on_data_available() operation to be called.
+
+\note If a SubscriberListener has both \c on_data_on_readers() and 
+\c on_data_available() callbacks enabled (by turning on both status bits), only
+\c on_data_on_readers() is called.
+
+
+*/
+
+
+/** \page dds_discovery_and_liveliness Discovery and Liveliness of Nodes in the Network
+
+For details see:
+- RTI DDS Manula §14.3 (p. 545pp).
+
+Each domain participant automatically creates matching data readers and writers
+for three built-in topics to deal with discovery and the assertion of 
+liveliness: \e DCPSParticipant, \e DCPSPublication, and \e DCPSSubscription.
+
+\section dds_discovery Discovery
+
+The DCPSParticipant topic is used to discover new peers and to maintain their
+liveliness status.
+(DCPSPublication and DCPSSubscription are used to exchange 
+information about the non-built in topics each participant has and/or wants, 
+i.e. these two built-in topics are used to figuer out if there are matching 
+topics and if a communication based on these non-built-in topics can be 
+established.)
+
+\section dds_liveliness Liveliness
+
+Each participant individually keeps track of the liveliness of all the other
+participants it has discovered. For a remote participant to be considered 
+"alive", it has to be detected at least once within the time frame given by
+the <tt>participant_liveliness_lease_duration</tt>, which the remote participant 
+announced during the initial discovery.
+
+The <tt>participant_liveliness_lease_duration</tt> is part of the 
+DDS_DiscoveryConfigQosPolicy and can be set as follows:
+
+\code
+DDS_DomainParticipant* participant;
+
+DDS_DomainParticipantQos participant_qos;
+participant.get_qos(participant_qos);
+
+// The time (in seconds) this node has had to been silent before other participants
+// declare it "stale" or "dead"
+participant_qos.discovery_config.participant_liveliness_lease_duration.sec = 100; //NOTE: the default is 100
+
+// The time intervall (in seconds) in which the participant will assert
+// its liveliness (i.e. it will send out an liveliness asserting message)
+participant_qos.discovery_config.participant_liveliness_assert_period.sec  = 30; //NOTE: the default is 30
+
+participant.set_qos(participant_qos);
+\endcode
+
+The tricky part is to actually catch the liveliness-change events.
+
+
+*/

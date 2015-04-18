@@ -1,0 +1,189 @@
+/** 
+ *  Copyright © 2015 Claus Christmann <hcc |ä| gatech.edu>.
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ */
+
+/** \page howto_install How to install the simulator
+ * 
+ * \tableofcontents
+ * 
+ * There are a bunch of dependencies necessary to get the simulation going.
+ * 
+ * \section dependencies_use_core Dependencies to use the simulation core
+ * 
+ * \subsection dependency_cmake CMake 2.8.9
+ * 
+ * In order to configure the project, <tt>cmake</tt> needs to be available at 
+ * least in version 2.8.9. (This is necessary for the Qt 5 configuration.)
+ * 
+ * \note Ubuntu 12.04 LTS Precise Pangoline does not have a matching version in
+ * its repositories. It might be necessary to either use the 12.10 Quantal
+ * Quetzal repositories or the <tt>cmake</tt> sources from Kitware.
+ * 
+ * \subsection dependency_qt5 Qt 5
+ * 
+ * The simulator is using Qt 5 which at the time of this writing (3/2013) is not
+ * yet widely available through package managers.
+ *
+ * \note Ubuntu 12.04 LTS Precise Pangoline does not have a matching version in
+ * its repositories. As such it is necessary to download and install Qt 5 
+ * directly from the project: https://qt-project.org/download
+ * 
+ * Get the version matching the target computer's architecture.
+ * 
+\code{.sh}
+burdell@linux:~/Downloads> wget http://releases.qt-project.org/qt5/5.0.1/qt-linux-opensource-5.0.1-x86_64-offline.run
+burdell@linux:~/Downloads> chmod +x qt-linux-opensource-5.0.1-x86_64-offline.run
+burdell@linux:~/Downloads> ./qt-linux-opensource-5.0.1-x86_64-offline.run
+\endcode
+ * 
+ * Note where Qt has been installed, e.g. <tt>~/Qt5.0.1</tt>, and find the 
+ * base directory for the Qt libraries, normally <tt>~/Qt5.0.1/5.0.1/gcc</tt> 
+ * for the 32 bit version and <tt>~/Qt5.0.1/5.0.1/gcc_64</tt> for the 64 bit 
+ * version.
+ * 
+ * Set this directory in the top level <tt>CMakeLists.txt</tt>:
+\code{.cmake}
+set(BASE_DIR_QT5
+  "/home/burdell/Qt5.0.1/5.0.1/gcc_64"
+  CACHE FILEPATH "The full path to the Qt 5 installation."
+) 
+\endcode
+ * 
+ * \subsection dependency_rtidds RTI Connext DDS
+ * 
+ * The different nodes of the simulation communicate using RTI's Connext Data
+ * Distribution System. An overview is given at https://www.rti.com/products/dds
+ * 
+ * Connext is a commercial non-free software for which RTI has granted the UAVRF
+ * a free university license for research purposes. The software can be 
+ * downloaded from https://www.rti.com/downloads/connext-files.html 
+ * (This download also includes a free 30-day evaluation license which won't be 
+ * needed.)
+ * 
+ * Get the version matching the target computer's architecture.
+ * 
+\code{.sh}
+burdell@linux:~/Downloads> wget https://www.rti.com/eval/rtidds500/RTI_Connext_Professional_Edition-5.0.0-RHEL6_64_lic.sh
+burdell@linux:~/Downloads> chmod +x RTI_Connext_Professional_Edition-5.0.0-RHEL6_64_lic.sh
+burdell@linux:~/Downloads> ./RTI_Connext_Professional_Edition-5.0.0-RHEL6_64_lic.sh
+\endcode
+ *
+ * Note where Connext has been installed, e.g. <tt>~/RTI</tt>, and find the base
+ * directory for the DDS libraries, normally <tt>~/RTI/ndds.5.0.0</tt>.
+ *
+ * Set this directory in the top level <tt>CMakeLists.txt</tt>:
+\code{.cmake}
+set( BASE_DIR_DDS
+  "/home/burdell/RTI/ndds.5.0.0"
+  CACHE FILEPATH "The full path to the RTI Connext DDS installation."
+)
+\endcode 
+ * 
+ * \subsection dependency_xerces The Apache Xerces™ Project
+ * 
+ * Xerces is used to parse the XML input files which set up the simulation.
+ * 
+\code{.sh}
+burdell@linux:~/Downloads> sudo apt-get install libxerces-c-dev
+\endcode
+ * 
+ * Furthermore, the configuration depends on a CMake find module for Xerces: 
+ * <tt>FindXerces-c.cmake</tt>. If no native module is available, the provided 
+ * one can be used.
+ * 
+ * \subsection dependency_provided Provided Libraries
+ * 
+ * There are some other dependecies on further utility libraries. As these are
+ * either self-made or otherwise adapted, they are provided in 
+ * <tt>/src/3rdParty</tt>.
+ * 
+ * \subsubsection dependency_amg AMG
+ * 
+ * AMG is a simple library providing support for GIS related operations. 
+ * It should be provided
+ * 
+ * Furthermore, the configuration depends on a CMake find module for AMG: 
+ * <tt>FindAmg.cmake</tt>. The provided module can be used.
+ * 
+ * \subsubsection dependency_vroni VRONI
+ * 
+ * VRONI is a non-free commercial libray written by Prof. Martin Held from 
+ * Universität Salzburg. Prof. Held granted the UAVRF a no-cost research licence
+ * for non-commercial use. 
+ * More about VRONI at http://www.cosy.sbg.ac.at/~held/projects/vroni/vroni.html
+ * 
+ * Furthermore, the configuration depends on a CMake find module for VRONI: 
+ * <tt>FindVroni.cmake</tt>. The provided module can be used.
+ * 
+ * \subsubsection dependency_visilibitiy VisiLibity
+ * 
+ * VisiLibity is a LGPLv3 licensed library by Dr. Karl Obermeyer, available from 
+ * http://www.visilibity.org/ .
+ * The provided library in <tt>/src/3rdParty</tt> is a simple collection of the 
+ * provided functionality.
+ * 
+ * Furthermore, the configuration depends on a CMake find module for VisiLibity: 
+ * <tt>FindVisiLibity.cmake</tt>. The provided module can be used.
+ * 
+ * \subsection dependency_matlab MATLAB (optional)
+ * 
+ * Depending on the selcetion of the <tt>WITH_MATLAB</tt> configuration option
+ * the MATLAB engine can be/is used. For that to work, MATLAB must be available
+ * on the compiling and executing host. (The MATLAB engine, to be more precice.)
+ * 
+ * To set this up, the configuration depends on a CMake find module for MATLAB:
+ * <tt>FindMatlab8.cmake</tt>. The provided module, which is taken from 
+ * http://www.rad.upenn.edu/sbia/software/basis/apidoc/latest/FindMATLAB_8cmake_source.html,
+ * can be used.
+ * 
+ * \section dependencies_build_core Additional dependendcies to build the simulation core
+ * 
+ * \subsection dependency_eigen Eigen 3
+ * 
+\code{.sh}
+burdell@linux:~/Downloads> sudo apt-get install libeigen3-dev
+\endcode
+ * 
+ * Furthermore, configuration depends on a CMake find module for Eigen: 
+ * <tt>FindEigen3.cmake</tt>. If no native module is available, the provided 
+ * one can be used.
+ * 
+ * \subsection dependency_xsd CodeSynthesis XSD Compiler
+ * 
+ * The XSD compiler by CodeSynthesis is used to parse XML code (with XSD 
+ * verification) and is available from 
+ * http://www.codesynthesis.com/products/xsd/download.xhtml. 
+ * (XSD introduces the dependecy on Xerces.)
+ * 
+ * 
+ * \subsection dependency_boost Boost 1.5.3
+ * 
+ * The simulator makes use of <tt>boost::geometry</tt> and <tt>boost::graph</tt>.
+ * 
+ * \note Ubuntu 12.04 LTS Precise Pangoline does not have a matching version in
+ * its repositories. It might be necessary to either use the 12.10 Quantal
+ * Quetzal repositories or the sources from http://www.boost.org/users/download
+ * 
+ * \section firewall Opening ports in the firewall
+ *
+ * It is necessary to open some ports in a (hopefully) present firewall.
+ * http://community.rti.com/content/forum-topic/statically-configure-firewall-let-omg-dds-traffic-through 
+ * has the details.
+ *
+ * Most likely, the UDP ports will be 7400,7401, and 7410-7420 (for up to 5 
+ * participants).
+ *
+ */

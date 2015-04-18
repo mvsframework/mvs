@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ /*
+ *  Copyright © 2015 Claus Christmann <hcc |ä| gatech.edu>.
+ *  
+ */
+-->
+<Configuration
+  xmlns="http://uav.ae.gatech.edu/XML/SAI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://uav.ae.gatech.edu/XML/SAI ../../XSD/sai.xsd"
+>
+
+<DatumNED>
+  <!--  Newport, NJ --> 
+ <coordinates>-74.0381971640327,40.71513240628234,0</coordinates> 
+</DatumNED>
+
+<Arena>
+  <!--  Newport, NJ --> 
+  <coordinates>
+    -74.03186632160038,40.70998454734429,50.00000000000001 -74.02784941959661,40.73121828478508,50.00000000000001 -74.03702916198978,40.73196942114246,50.00000000000001 -74.03863346606092,40.72061073084193,50.00000000000001 -74.04341605171163,40.72101763856231,50.00000000000001 -74.04505279351851,40.7114150510218,50.00000000000001 -74.03186632160038,40.70998454734429,50.00000000000001 
+  </coordinates>
+</Arena>
+
+<Obstacles>
+  <href>KML/newport_nj.kml</href>
+</Obstacles>
+
+<Nodes>
+  <UAV>
+    <name>Hummingbird0</name>
+    <coordinates>-74.03806611919278,40.71506270713944,0 </coordinates> <!--hexagon-->
+    <startupDelay>1003</startupDelay>
+    <dds>
+      <name>DDS</name>
+    </dds>
+    <camera>
+      <hFov>80</hFov>
+    </camera>
+    <gust>
+      <name>GUST Interface</name>
+      <gustIp>192.168.54.38</gustIp>
+      <gustUdpPort>3010</gustUdpPort>
+      <localIp>192.168.54.38</localIp>
+      <localUdpPort>2010</localUdpPort>
+      <inpFilePath>~/svn/work/rmax</inpFilePath>
+      <manAugment><!-- using the defaults -->
+        <anom />
+        <jerk />
+        <vcHzGo />
+        <vcHzStop />
+        <vcHzSide />         
+      </manAugment>
+      <params_mr>
+        <damp />
+      </params_mr>
+    </gust>
+  </UAV>
+</Nodes>
+   
+</Configuration>

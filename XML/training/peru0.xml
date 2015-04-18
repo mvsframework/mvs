@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ /*
+ *  Copyright © 2015 Claus Christmann <hcc |ä| gatech.edu>.
+ *  
+ */
+-->
+<Configuration
+  xmlns="http://uav.ae.gatech.edu/XML/SAI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://uav.ae.gatech.edu/XML/SAI ../../XSD/sai.xsd"
+>
+
+<DatumNED>
+  <!--  Downtown  -->
+ <coordinates>-84.38453231630939,33.759579111458,00.0</coordinates>
+  
+  <!-- McKenna MOUT -->
+<!--   <coordinates>-84.80505663562711,32.37080242806627,00.0</coordinates> -->
+</DatumNED>
+
+<Arena>
+  <!-- Training grounds in ATL -->
+  <coordinates>
+    -84.39052716628132,33.75688219359806,0 -84.38150721445373,33.75673721012604,0 -84.38129430284928,33.7619711767231,0 -84.39063195163516,33.76185640311421,0 -84.39052716628132,33.75688219359806,0 
+  </coordinates> 
+</Arena>
+
+<Obstacles>
+  <href>KML/TrainingGrounds.kml</href>
+</Obstacles>
+
+<Nodes>
+  <UAV><!-- Peru0 -->
+    <name>Peru0</name>
+<!--     <coordinates>-84.38504009447274,33.75961449193584,0</coordinates> -->
+    <coordinates>-84.38567375529961,33.75929896335474,0</coordinates> <!--hexagon-->
+    <startupDelay>35003</startupDelay>
+    <dds>
+      <name>DDS</name>
+    </dds>
+    <camera>
+      <hFov>80</hFov>
+    </camera>
+    <gust>
+      <name>GUST Interface</name>
+      <gustIp>10.23.42.225</gustIp>
+      <gustUdpPort>3010</gustUdpPort>
+      <localIp>10.23.42.225</localIp>
+      <localUdpPort>2010</localUdpPort>
+      <inpFilePath>~/svn/work/rmax</inpFilePath>
+      <manAugment><!-- using the defaults -->
+        <anom />
+        <jerk />
+        <vcHzGo />
+        <vcHzStop />
+        <vcHzSide />        
+      </manAugment>
+      <params_mr>
+        <damp />
+      </params_mr>
+    </gust>
+  </UAV>
+</Nodes>
+   
+</Configuration>

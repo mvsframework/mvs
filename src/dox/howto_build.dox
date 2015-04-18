@@ -1,0 +1,156 @@
+/** 
+ *  Copyright © 2015 Claus Christmann <hcc |ä| gatech.edu>.
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ */
+ 
+ /** \page howto_build How to build the simulator
+
+\note The code development is done on a 64 bit Linux machine. As such, this
+is the preferred architecture. Although it \e should be possible to build the
+simulation on 32 bit systems, it might be necessary to tweak the CMake 
+configuration as there might be hard-coded 64 bit pieces which require a manual
+identification and a corresponding change.
+Furthermore, obvioulsy doing a 32/64 setup requires the availabiliy of a lot 
+of system development libraries in both 32 and 64 bit.
+
+\section x86_64 64 bit
+
+Confirm the correct setup for a native 64 bit compilation or a 32/64 bit mixed
+setup. The file <tt>${CMAKE_SOURCE_DIR}/src/3rdParty/cmake/cc_general.cmake</tt>,
+which is included in the main <tt>CMakeLists.txt</tt> file \e before the call to 
+<tt>project()</tt>, runs a simple test to determine the architecture of the 
+system and stores the result in <tt>HAVE_64_BIT</tt>.
+
+If <tt>HAVE_64_BIT</tt> is true, there are two options: build a native 64 bit
+application or build a 32 bit application on a 64 bit system. The configuration
+defaults to the former, i.e. building a native 64 bit application, and records 
+that choice in <tt>BUILD_NATIVE_64_BIT</tt>.
+
+\note Although <tt>BUILD_NATIVE_64_BIT</tt> appears as a user selectable option,
+<b>changing it's value after the initial configuration has <em>no</em> effect</b>.
+
+If a 64 bit system should build a 32 bit application, it is neccesary to 
+\e manually change the default of <tt>BUILD_NATIVE_64_BIT</tt> in 
+<tt>${CMAKE_SOURCE_DIR}/src/3rdParty/cmake/cc_general.cmake</tt> from <tt>ON</tt>
+to <tt>OFF</tt>.
+
+\note Be aware that this check might result in a wrong detection of the 
+system's architecture, for example in cases where a natively 64 bit capable 
+system runs only a 32 bit OS.
+
+Some commands to check the system architecture:
+\code{.sh}
+burdell@linux:~> uname -a
+burdell@linux:~> file /sbin/init
+\endcode
+
+\section build_environment Setting up the build environment
+
+As a first step, ensure that all \ref dependencies are satisfied.
+ 
+The simulator's configuration is governed by a hirachical set of 
+<tt>CMakeLists.txt</tt> files:
+
+-# <tt>${CMAKE_SOURCE_DIR}/<b>CMakeLists.txt</b></tt>\n
+   This file sets the main options for the configuration. Update the file
+   with the information gathered during checking all the \ref dependencies. All
+   the settings in here pertain to both, the \ref core and the \ref periphery 
+   parts of the simulation.\n
+   - Set <tt>BASE_DIR_QT5</tt>, which depends on the installation path.
+   - Set <tt>BASE_DIR_NDDS</tt>, which depends on the installation path.
+     - Set <tt>NDDS_LIBRARY_DIR</tt>, which depends on your system's architecture.
+     - Set <tt>NDDS_LICENSE_FILE</tt> to the prefered license. (All this does is
+       copy this file into the output/install location so that it is available
+       for the binary execution.)
+   - Set <tt>BASE_DIR_BOOST</tt>, which depends on the installation path.
+   - Optionally set <tt>BASE_DIR_MATLAB</tt> if the simulation should interact
+     with a MATLAB engine.
+-# <tt>${CMAKE_SOURCE_DIR}/<b>src/CMakeLists.txt</b></tt>\n
+   This file mainly takes the (user supplied) information from the previous file
+   and sets some dependent stuff. Technically the content could be in the previous
+   file as well, however, for clarity it was separated. (This file also deals 
+   with settings common to the \ref core and \ref periphery parts.
+-# <tt>${CMAKE_SOURCE_DIR}/<b>src/core/CMakeLists.txt</b></tt>\n
+   This file appends the common settings with settings necessesary
+   for the \ref core only.
+-# <tt>${CMAKE_SOURCE_DIR}/<b>src/periphery/CMakeLists.txt</b></tt>\n
+   THis file appends the common settings with settings for the \ref periphery.
+   
+
+
+\section building Building the simulation
+
+Technically, these are the steps:
+
+\code{.sh}
+burdell@linux:~/csim> mkdir build
+burdell@linux:~/csim> cd build
+burdell@linux:~/csim/build> cmake ../
+burdell@linux:~/csim/build> make
+\endcode
+ 
+Practically, it will fail the first time (and any subsequent time when the 
+auto-generated files have been deleted), with the following error message:
+
+\code{.sh}
+...
+[ 18%] Building CXX object src/core/CMakeFiles/mvscore.dir/IDL/messages.cxx.o
+In file included from /home/burdell/csim/build/src/core/IDL/messages.cxx:39:0:
+/home/burdell/csim/build/src/core/IDL/messages.h:33:1: error: ‘IDL’ was not declared in this scope
+/home/burdell/csim/build/src/core/IDL/messages.h:33:1: error: template argument 1 is invalid
+make[2]: *** [src/core/CMakeFiles/mvscore.dir/IDL/messages.cxx.o] Error 1
+make[1]: *** [src/core/CMakeFiles/mvscore.dir/all] Error 2
+make: *** [all] Error 2
+*** Failure: Exit code 2 ***
+\endcode
+
+This is due to a (potential?) bug in RTI's <tt>rtiddsgen</tt>. To fix it,
+simply open <tt>${CMAKE_SOURCE_DIR}/build/src/core/IDL/messages.h</tt> and 
+comment out the line in question:
+
+Autogenereated erroneous code snippet:
+\code
+#include <QtCore/QMetaType>
+
+// Q_DECLARE_METATYPE(IDL::Data::NodeType);
+
+Q_DECLARE_METATYPE(IDL::Data::StateDescriptorId);
+
+#include "IDL/data.h"
+
+
+#include <QtCore/QMetaType>
+\endcode
+
+Corrected section:
+\code
+#include <QtCore/QMetaType>
+
+// Q_DECLARE_METATYPE(IDL::Data::NodeType);
+
+// Q_DECLARE_METATYPE(IDL::Data::StateDescriptorId); //NOTE: Manually commented out
+
+#include "IDL/data.h"
+
+
+#include <QtCore/QMetaType>
+\endcode
+
+\section compiled_output Output
+Depending on the setting of <tt>WITH_GRAPHICS</tt> in Cmake, the resulting binary
+is either <tt>gnodes</tt>, which includes graphics, or <tt>cnodes</tt>, which
+is console only. The functionality is otherwise the same.
+
+ */

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ /*
+ *  Copyright © 2015 Claus Christmann <hcc |ä| gatech.edu>.
+ *  
+ */
+-->
+<Configuration
+  xmlns="http://uav.ae.gatech.edu/XML/SAI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://uav.ae.gatech.edu/XML/SAI ../../XSD/sai.xsd"
+>
+
+<DatumNED>
+  <!--  Newport, NJ --> 
+ <coordinates>-74.0381971640327,40.71513240628234,0</coordinates> 
+</DatumNED>
+
+<Arena>
+  <!--  Newport, NJ --> 
+  <coordinates>
+    -74.03186632160038,40.70998454734429,50.00000000000001 -74.02784941959661,40.73121828478508,50.00000000000001 -74.03702916198978,40.73196942114246,50.00000000000001 -74.03863346606092,40.72061073084193,50.00000000000001 -74.04341605171163,40.72101763856231,50.00000000000001 -74.04505279351851,40.7114150510218,50.00000000000001 -74.03186632160038,40.70998454734429,50.00000000000001 
+  </coordinates>
+</Arena>
+
+<Obstacles>
+  <href>KML/newport_nj.kml</href>
+</Obstacles>
+
+<Nodes>
+  <ControlStation>
+    <name>GCS2</name>
+    <!--  Newport, NJ --> 
+    <coordinates>-74.03815664834362,40.7150197607402,0</coordinates> 
+    <startupDelay>0002</startupDelay>
+    <dds>
+      <name>DDS</name>
+    </dds>
+    <camera>
+      <hFov>120</hFov> <!-- approx. human binocular vision -->
+    </camera>
+    <hmi>
+      <name>HMI</name>
+      <Joystick>
+        <name>GREAT PLANES InterLink Elite</name>
+        <Roll>
+          <axis>0</axis>
+          <max>24660</max>
+          <min>-24999</min>
+        </Roll>
+        <Pitch>
+          <axis>1</axis>
+          <max>22633</max>
+          <min>-22634</min>
+        </Pitch>
+        <Yaw>
+          <axis>4</axis>
+          <max>24998</max>
+          <min>-21958</min>
+        </Yaw>
+        <Throttle>
+          <axis>2</axis>
+          <reverse /> <!-- use the default value "true" -->
+          <max>22971</max>
+          <min>-20607</min>
+        </Throttle>
+        <button action="altitudeHold">0</button>
+        <button action="dash">1</button>
+        <button action="extremes">2</button>
+        <autoRepeatDelay /> <!-- use the default value "250"-->
+      </Joystick>
+    </hmi>
+  </ControlStation>
+</Nodes>
+   
+</Configuration>

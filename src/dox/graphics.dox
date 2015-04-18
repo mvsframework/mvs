@@ -1,0 +1,147 @@
+/** 
+ *  Copyright © 2015 Claus Christmann <hcc |ä| gatech.edu>.
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ */
+ 
+ /** \page graphics Graphics
+
+The simulation has a CMake switch called <tt>WITH_GRAPHICS</tt> that governs
+whether the compilation results will have graphcis (<tt>WITH_GRAPHICS</tt> 
+checked) or not (<tt>WITH_GRAPHICS</tt> unchecked).
+
+\tableofcontents
+
+The graphics are mainly comprised of two seperate things: the GUI-graphics and 
+the graphics presented within that GUI, e.g. the situational overview map.
+
+
+\section z_values The Z-Values of the Graphics Items
+
+ Z-Value | Item 
+ ------: | :----
+  0      | obstacleCellGraphics
+  5      | fovPolygonItem
+  7      | obstacleGraphics
+ 10      | rfPolygonCenterItem
+ 20      | bodyCarriedFrameItem
+
+
+
+\section graphics_map The Overview Map
+
+The overview map presents the data of that Node which the GUI represents. That
+is important to remember as the map does not represent the "true" state of the
+overall system, but the data contained within reach of the respective Node 
+represented by the GUI.
+
+Several things are show in the map and this document tries to collect how these
+elements are altered and updated.
+
+\subsection graphics_map_environment The Environment and the Arena
+
+\subsection graphics_map_routegraph Route Graph
+
+\subsection graphics_map_blip Other Nodes (Blips)
+
+\subsubsection graphics_map_blip_instantiation Instantiation
+
+In that sequence, NodePrivate::initializeBlip() calls
+- the constructor Blip::Blip() via <tt>new</tt>
+- Blip::setDatum()
+- Blip::setRfPolygonPalette()
+
+Other than instantiating the graphical elements represting the Blip,
+no further graphics work is done in the constructor.
+
+setDatum() adds all the graphical element to the datum item. These items
+are:
+
+- BlipPrivate::rfPolygonItem (initially visible)
+- BlipPrivate::rfPolygonCenterItem (initially visible)
+- BlipPrivate::fovPolygonItem (initially hidden)
+- BlipPrivate::bodyCarriedFrameItem (axis initially hidden)
+
+Furthermore, some items are implicityly added as they are children of
+the bodyCarriedFrameItem:
+
+- BlipPrivate::velocityItem (initially hidden) 
+- BlipPrivate::bodyFrameItem 
+
+\subsubsection graphics_map_blip_updates_state  Updates from IDL::Messages::State
+
+In that sequence, calls
+- Blip::setPosition3D()
+- Blip::setVelocity()
+- Blip::setAttitude()
+- NodePrivate::updateTertiaryBlipData()
+
+The overall idea is that the graphics work related to thos actions follows
+the same ideas than the data manipulating functions: if the effects on the graphics
+are solemnly depending on primary data, the related functions should take care of 
+updateing the graphics for that (and related secondary elements, if they exist).
+If graphic elements also depend to tertiary data, updateTertiaryBlipData() should
+take care of those.
+
+Here are the effects of the above mentioned functions:
+
+- Blip::setPosition3D() triggers
+  - BlipPrivate::bodyCarriedFrameItem.setPos(), simply moving the NED frame wrt. to the datumItem
+  - BlipPrivate::updateCurrentWaypointGraphics(), deletes and recreates BlipPrivate::currentWaypointItem
+    and sets it as a child of BlipPrivate::datumItem.
+- Blip::setVelocity() triggers
+  - BlipPrivate::velocityItem.setHeadPosition() to reflect the current speed 
+  - BlipPrivate::velocityItem.show() or BlipPrivate::velocityItem.hide(), depending on whether the speed is greater 
+    than a threshold value.
+- Blip::setAttitude() triggers
+  - BlipPrivate::bodyFrameItem.setRotation() to reflect the yaw angle of the Blip
+- NodePrivate::updateTertiaryBlipData() triggers
+  - NodePrivate::updateRfPoly(), which triggers
+    - Blip::setRfPolygon(), which calls Blip::rfPolygonItem.prepareGeometryChange() and 
+      Blip::rfPolygonItem.update() --  if it is set to be visible.
+    - Blip::setRfPolygonCenter(), which uses Blip::rfPolygonCenterItem.setPos() -- if it is set to be visible.
+  - NodePrivate::updateFovPoly()
+    - Blip::setFovPolygon(), which calls Blip::fovPolygonItem.prepareGeometryChange() and 
+      Blip::fovPolygonItem.update() --  if it is set to be visible.
+
+    
+\subsubsection graphics_map_blip_updates_status Updates from IDL::Messages::Status
+
+Calls Blip::setMode(), which in turn calls BlipPrivate::updateRfPolygonPalette().
+
+\subsubsection graphics_map_blip_updates_flightplan  Updates from IDL::Messages::Flightplan
+
+In that sequence, calls
+- Blip::setFlightplan()
+- Blip::setCurrentWaypointIndex()
+
+
+\subsubsection graphics_map_blip_deletion Deletion
+
+Node::deleteBlip() simply calls the destructor Blip::~Blip() via <tt>delete</tt>.
+
+\subsection graphcis_map_ownshipblip The Ownship Blip
+
+\subsection graphics_map_comgraph COM Graph
+
+The graphics for the COM graph (NodePrivate::comGraph) are updated whenever the graph gets
+updated, i.e. from inside NodePrivate::updateComGraph(). The function taking care of that is
+NodePrivate::updateComGraphGraphics() which effectively deletes a previous version of 
+NodePrivate::comGraphItem and recreates it via Graphics_2D::generateQtGraphicsFromGraph().
+
+
+
+
+
+*/

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ /*
+ *  Copyright © 2015 Claus Christmann <hcc |ä| gatech.edu>.
+ *  
+ */
+-->
+<Configuration
+  xmlns="http://uav.ae.gatech.edu/XML/SAI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://uav.ae.gatech.edu/XML/SAI ../../XSD/sai.xsd"
+>
+
+<DatumNED>
+  <!--  Downtown  -->
+ <coordinates>-84.38453231630939,33.759579111458,00.0</coordinates>
+  
+  <!-- McKenna MOUT -->
+<!--   <coordinates>-84.80505663562711,32.37080242806627,00.0</coordinates> -->
+</DatumNED>
+
+<Arena>
+<!--   <href>KML/boundaries.kml</href> -->
+
+  <!--  Downtown  
+  <coordinates>
+        -84.38907390071307,33.758287753606,0 -84.38085661618895,33.75827967530952,0 -84.38082092928302,33.7632216919809,0 -84.38919397650393,33.76327330531792,0 -84.38907390071307,33.758287753606,0 
+  </coordinates> -->
+  
+  <!-- Expanded Downtown 
+  <coordinates>
+    -84.3929241195227,33.75521764046228,0 -84.37840789102927,33.75521764046228,0 -84.37840789102927,33.76626469298076,0 -84.3929241195227,33.76626469298076,0 -84.3929241195227,33.75521764046228,0 
+  </coordinates> -->
+  
+  <!-- Even larger Downtown -->
+  <coordinates>
+    -84.39276630381262,33.75455551598409,0 -84.37930301246507,33.75439301298953,0 -84.37922056257533,33.76610816280019,0 -84.39266052524131,33.7662924935816,0 -84.39276630381262,33.75455551598409,0 
+  </coordinates>
+  
+  
+  <!-- McKenna MOUT -->
+<!--  <coordinates>
+    -84.80455720143341,32.37158635731291,0 -84.80609471313224,32.37133696825789,0 -84.80534680448044,32.37073733111613,0 -84.80565086687355,32.37059863429207,0 -84.80570045116139,32.37025265330841,0 -84.8055884635323,32.37002892315341,0 -84.80540395339732,32.36992893004193,0 -84.80516146795652,32.36983298484992,0 -84.80503026343575,32.3697470334272,0 -84.80505503547698,32.36951961374155,0 -84.80463663306053,32.36951604805753,0 -84.80417600124821,32.3696102137793,0 -84.80389967552617,32.36974625444622,0 -84.80379680177643,32.3699464810012,0 -84.80389284542626,32.37030887684757,0 -84.80416783408516,32.3706799091423,0 -84.80469199896017,32.37081105045846,0 -84.80455720143341,32.37158635731291,0 
+  </coordinates>-->
+</Arena>
+
+<Obstacles>
+<!--   <href>KML/atl/empty.kml</href> -->
+   <href>KML/atl/large.kml</href> 
+<!--   <href>KML/atl/recedingHorizon_11d1.kml</href> -->
+<!--   <href>KML/atl/recedingHorizon_11d2.kml</href> -->
+<!--   <href>KML/McKenna_MOUT.kml</href> -->
+</Obstacles>
+
+<Nodes>
+  <ControlStation>
+    <name>GCS2</name>
+    <!--  Downtown  -->
+    <coordinates>-84.38456511651836,33.75917337933702,0</coordinates>
+    <!-- McKenna MOUT -->
+<!--     <coordinates>-84.80505663562711,32.37080242806627,0</coordinates> -->
+   
+    <startupDelay>0002</startupDelay>
+    <dds>
+      <name>DDS</name>
+    </dds>
+    <camera>
+      <hFov>120</hFov> <!-- approx. human binocular vision -->
+    </camera>
+    <hmi>
+      <name>HMI</name>
+      <Joystick>
+        <name>GREAT PLANES InterLink Elite</name>
+        <Roll>
+          <axis>0</axis>
+          <max>24660</max>
+          <min>-24999</min>
+        </Roll>
+        <Pitch>
+          <axis>1</axis>
+          <max>22633</max>
+          <min>-22634</min>
+        </Pitch>
+        <Yaw>
+          <axis>4</axis>
+          <max>24998</max>
+          <min>-21958</min>
+        </Yaw>
+        <Throttle>
+          <axis>2</axis>
+          <reverse /> <!-- use the default value "true" -->
+          <max>22971</max>
+          <min>-20607</min>
+        </Throttle>
+        <button action="altitudeHold">0</button>
+        <button action="dash">1</button>
+        <button action="extremes">2</button>
+        <autoRepeatDelay /> <!-- use the default value "250"-->
+      </Joystick>
+    </hmi>
+  </ControlStation>
+</Nodes>
+   
+</Configuration>

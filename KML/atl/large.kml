@@ -1,0 +1,1117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2"
+     xmlns:gx="http://www.google.com/kml/ext/2.2"
+     xmlns:kml="http://www.opengis.net/kml/2.2"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:obstacles="http://uav.ae.gatech.eud/obstacles">
+<Document>
+  <name>obstacles.kml</name>
+  <Placemark>
+    <name>Boundary</name>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.39276630381262,33.75455551598409,0 -84.37930301246507,33.75439301298953,0 -84.37922056257533,33.76610816280019,0 -84.39266052524131,33.7662924935816,0 -84.39276630381262,33.75455551598409,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg000" obstacles:category="building">
+    <name>Building 0</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38377573726848,33.76186370065822,0 -84.38359507788738,33.76159439376854,0 -84.38359964873911,33.76147205836489,0 -84.38378687514455,33.76120674705341,0 -84.38360010805312,33.7611123810596,0 -84.38341141136478,33.76137646735983,0 -84.38327447671247,33.76143873928341,0 -84.38282271734929,33.76143099834462,0 -84.38281806955288,33.76161205679851,0 -84.38326394450859,33.76161979080122,0 -84.38339631397174,33.76167496027031,0 -84.38358432098598,33.76195161648186,0 -84.38377573726848,33.76186370065822,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg001" obstacles:category="building">
+    <name>Building 1</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38586210813077,33.76132302995887,0 -84.38586222765805,33.76122746812275,0 -84.38589266230281,33.76122187311709,0 -84.38588938692912,33.76113755091239,0 -84.38586910203631,33.76113753340447,0 -84.38586922879397,33.76103635024259,0 -84.3852877401918,33.76102741534817,0 -84.38529099718815,33.7611257904194,0 -84.38525718574428,33.76112857170325,0 -84.38525369875799,33.76121288770356,0 -84.38528074867375,33.76121010056432,0 -84.38528399875109,33.76131409686683,0 -84.38586210813077,33.76132302995887,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg002" obstacles:category="building">
+    <name>Building 2</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38585092208557,33.76216059393891,0 -84.38584767046365,33.7620565968316,0 -84.38587809474699,33.76205943397765,0 -84.38587820300637,33.76197230371752,0 -84.38585453696952,33.76197228314015,0 -84.38585804375504,33.76187110267159,0 -84.38527316495383,33.76186497219948,0 -84.38527303823871,33.76196615521137,0 -84.38524937248774,33.76196613454955,0 -84.38524250513724,33.76205044783171,0 -84.38526954829418,33.76205328211701,0 -84.38527280614635,33.76215165755841,0 -84.38585092208557,33.76216059393891,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg003" obstacles:category="building">
+    <name>Building 3</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38587684066144,33.76306001825203,0 -84.38589126960635,33.76233207281871,0 -84.38427864852217,33.7623081816895,0 -84.38426757612309,33.76304174637533,0 -84.38587684066144,33.76306001825203,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg004" obstacles:category="building">
+    <name>Building 4</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38253479032336,33.7618175910077,0 -84.38254570703482,33.76121612624524,0 -84.38222453357669,33.76121583873634,0 -84.38221362232538,33.76181168300396,0 -84.38253479032336,33.7618175910077,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg006" obstacles:category="building">
+    <name>Building 6</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38258686544712,33.76076084145021,0 -84.38259407599323,33.76041233040439,0 -84.38231010161074,33.76040645559354,0 -84.38229950564973,33.76075777460976,0 -84.38258686544712,33.76076084145021,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg007" obstacles:category="building">
+    <name>Building 7</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38372369770882,33.76005076150986,0 -84.38373084275936,33.75975003032467,0 -84.38317980088237,33.75974111107372,0 -84.38317604593985,33.7600334134751,0 -84.38372369770882,33.76005076150986,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg008" obstacles:category="building">
+    <name>Building 8</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38299347354106,33.76004449389777,0 -84.38300057720133,33.75977749010989,0 -84.38227712024866,33.75976560137753,0 -84.38227001845692,33.76002979505898,0 -84.38299347354106,33.76004449389777,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg009" obstacles:category="building">
+    <name>Building 9</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38170180500687,33.76012183429228,0 -84.38182485183185,33.76007082348536,0 -84.38178906270417,33.76000901986394,0 -84.38181726228802,33.75999626484958,0 -84.38180704710028,33.759970695059,0 -84.38176860472315,33.75997918077949,0 -84.38173280742726,33.75992376729968,0 -84.38125854938672,33.76013208571631,0 -84.38128666016637,33.76018749239623,0 -84.3812558956038,33.76020237502593,0 -84.38127635623313,33.7602300841442,0 -84.38130712080231,33.76021520150847,0 -84.38134547447295,33.76027487752943,0 -84.38147108646632,33.76022173931634,0 -84.38148899340607,33.76024305594923,0 -84.38170946087193,33.76014527174177,0 -84.38170180500687,33.76012183429228,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg010" obstacles:category="building">
+    <name>Building 10</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38737306333448,33.76060958825327,0 -84.3873770798501,33.76050143465873,0 -84.38744115505274,33.76050310363588,0 -84.38744126428811,33.76041431813103,0 -84.38669760193412,33.76040076781898,0 -84.38669746579571,33.76051053862727,0 -84.38662950785015,33.76050886602584,0 -84.38663133738362,33.76059926721589,0 -84.38737306333448,33.76060958825327,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg011" obstacles:category="building">
+    <name>Building 11</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38744730608036,33.76023836643875,0 -84.38744741353054,33.76015119525562,0 -84.38738334068694,33.76014791214289,0 -84.38738345823148,33.76005266956978,0 -84.38663980361125,33.76003589144664,0 -84.38663969534291,33.76012306237329,0 -84.38670571127747,33.76012473326201,0 -84.38670170167326,33.76022642932686,0 -84.38744730608036,33.76023836643875,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg012" obstacles:category="building">
+    <name>Building 12</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38671642884904,33.76087699684911,0 -84.38671849058251,33.76078014155775,0 -84.38674179321185,33.76077854730135,0 -84.38674384889137,33.76068653498662,0 -84.38658850944817,33.76068801584189,0 -84.38658668796326,33.76059115747167,0 -84.38613233105427,33.76058753793131,0 -84.38613221623044,33.76067955177273,0 -84.38611085937944,33.76067791907466,0 -84.38610880481119,33.76076831706362,0 -84.38613404916067,33.76076672455623,0 -84.38613004080077,33.76086680663638,0 -84.38671642884904,33.76087699684911,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg013" obstacles:category="building">
+    <name>Building 13</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38660292131645,33.76002778842172,0 -84.38660304769441,33.75992608894485,0 -84.38676032541032,33.75992622374596,0 -84.38675849194432,33.75983905103898,0 -84.38673518952579,33.75984064537677,0 -84.38673919525436,33.75974217761413,0 -84.38615475488633,33.75973360401985,0 -84.38615269243192,33.75983045912816,0 -84.38612551271157,33.75982720713366,0 -84.38612539997453,33.759917606684,0 -84.3861525857546,33.75991601586751,0 -84.38615051522605,33.76001932788421,0 -84.38660292131645,33.76002778842172,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg014" obstacles:category="building">
+    <name>Building 14</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38666548688858,33.7612450094863,0 -84.38671986931297,33.76123375615872,0 -84.38676263142392,33.76119827869437,0 -84.38678016906917,33.76114825106232,0 -84.3867666310385,33.76110465395257,0 -84.38672589889407,33.76106910489976,0 -84.38666960889741,33.76105291387645,0 -84.38661134510326,33.76106254958737,0 -84.38656663929652,33.76109963963821,0 -84.38654910758734,33.76114482437559,0 -84.38656070177395,33.76119003411944,0 -84.38659948617533,33.76123042435884,0 -84.38666548688858,33.7612450094863,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg015" obstacles:category="building">
+    <name>Building 15</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38677137928025,33.76297396457494,0 -84.38677870430657,33.76251864874082,0 -84.38622426595596,33.76250692945591,0 -84.38622369205895,33.76296787162023,0 -84.38677137928025,33.76297396457494,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg016" obstacles:category="building">
+    <name>Building 16</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38712495569752,33.76182977215462,0 -84.38713526233622,33.76134549676283,0 -84.38740710823537,33.76134411431138,0 -84.38740745488137,33.76106322945757,0 -84.38711813616091,33.7610629831011,0 -84.38710226075568,33.76133901145922,0 -84.38644984465651,33.76133360956975,0 -84.38644147140256,33.76182111432067,0 -84.38712495569752,33.76182977215462,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg017" obstacles:category="building">
+    <name>Building 17</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38807047849937,33.76275521073774,0 -84.38806722760707,33.76264840319244,0 -84.38788128151096,33.76264824476312,0 -84.38787809635454,33.76248803522606,0 -84.388070807102,33.76248538866967,0 -84.3880709373083,33.76237858438468,0 -84.38766186846688,33.7623698041724,0 -84.38766511837901,33.76247661115437,0 -84.38771921830183,33.76247103597652,0 -84.38772237903918,33.76265091986174,0 -84.38766828576412,33.76265087370088,0 -84.38765801595152,33.76275485891945,0 -84.38807047849937,33.76275521073774,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg018" obstacles:category="building">
+    <name>Building 18</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38806124430492,33.76201038269868,0 -84.38816604040477,33.76201609228515,0 -84.38816633444937,33.76177718936297,0 -84.38805814183283,33.7617827189702,0 -84.38806161900997,33.76170402427903,0 -84.38776749021641,33.76170377474855,0 -84.38777039873928,33.76208883325506,0 -84.38805776727436,33.76208907751152,0 -84.38806124430492,33.76201038269868,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg019" obstacles:category="building">
+    <name>Building 19</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38809890758775,33.76162254760794,0 -84.38810599624154,33.7613555437666,0 -84.38816685040096,33.7613555951874,0 -84.38816707782077,33.76117009365053,0 -84.38775124624991,33.76116693132208,0 -84.38775440232423,33.76134962478012,0 -84.38768679036446,33.76134675678606,0 -84.387683074322,33.76161938426668,0 -84.38809890758775,33.76162254760794,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg020" obstacles:category="building">
+    <name>Building 20</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38896707913679,33.76089681706964,0 -84.38897291479519,33.75976568130353,0 -84.38868294670128,33.75977285594177,0 -84.38869153328832,33.76004730370372,0 -84.38846849244841,33.76004340755991,0 -84.3884727085844,33.76024367815893,0 -84.38844149122828,33.76023623456496,0 -84.38844135078769,33.76035120250866,0 -84.3877008463503,33.76034686724938,0 -84.38770016738006,33.7608994539038,0 -84.38896707913679,33.76089681706964,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg021" obstacles:category="building">
+    <name>Building 21</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38841055938021,33.76027771569395,0 -84.38840402808411,33.76008939782025,0 -84.38827556354526,33.76008647893546,0 -84.38827568753652,33.75998529623718,0 -84.38782267779426,33.75997929228044,0 -84.38781893427792,33.76027440491342,0 -84.38841055938021,33.76027771569395,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg022" obstacles:category="building">
+    <name>Building 22</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38861751267915,33.75968485014024,0 -84.38871896256714,33.75966245058633,0 -84.38880017932952,33.75959787425778,0 -84.38882056976303,33.75951076150402,0 -84.38878347365863,33.75943484296756,0 -84.38870916551136,33.75937856763949,0 -84.38860776731386,33.75935880782109,0 -84.38851308278233,33.75937840251225,0 -84.38844201197526,33.75944017656427,0 -84.38841489067694,33.75950198763842,0 -84.38842157865251,33.75956101648754,0 -84.38839108505555,33.75961720356737,0 -84.38838765286077,33.75965936020837,0 -84.38844173099791,33.75967064846546,0 -84.38851949424567,33.75966509282269,0 -84.38861751267915,33.75968485014024,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg023" obstacles:category="building">
+    <name>Building 23</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38711364053822,33.75924230513203,0 -84.38711743833572,33.75890503360127,0 -84.38627904666086,33.75889588289495,0 -84.38626849512441,33.75922471657666,0 -84.38711364053822,33.75924230513203,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg024" obstacles:category="building">
+    <name>Building 24</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38341229653712,33.75941352282434,0 -84.38341584257486,33.75928423734501,0 -84.38338552794544,33.75919708123388,0 -84.38323678186536,33.75919413891782,0 -84.38250990825897,33.75921316703806,0 -84.38250290406401,33.75940147311662,0 -84.38341229653712,33.75941352282434,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg025" obstacles:category="building">
+    <name>Building 25</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38394395315972,33.7587141468235,0 -84.38394080135912,33.75853426369262,0 -84.38305171216112,33.75851661282545,0 -84.38304809773524,33.75869930098414,0 -84.38394395315972,33.7587141468235,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg026" obstacles:category="building">
+    <name>Building 26</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38528346729038,33.76173850275459,0 -84.38527705892112,33.76145462241197,0 -84.38517237026302,33.76135896969158,0 -84.38499328231697,33.76129416945472,0 -84.38482426808322,33.76127153696924,0 -84.3846450538979,33.76129386548138,0 -84.38449622927882,33.76134994770612,0 -84.38437104299064,33.76142572447956,0 -84.38435713934739,33.76172926063807,0 -84.38446521761985,33.76181086194915,0 -84.38458346480678,33.76187561078139,0 -84.38483020860642,33.76192079817825,0 -84.38501618181644,33.76189566392043,0 -84.38516838877919,33.76183677252705,0 -84.38528346729038,33.76173850275459,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg027" obstacles:category="building">
+    <name>Building 27</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38317752718312,33.75788581677182,0 -84.38269774675818,33.75788384575453,0 -84.38269276680425,33.75828131468259,0 -84.38317185420735,33.7582829712443,0 -84.38317752718312,33.75788581677182,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg028" obstacles:category="building">
+    <name>Building 28</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38191765538321,33.75778919511428,0 -84.38190728516724,33.75802653032253,0 -84.38153864779558,33.75802005592426,0 -84.38153174877762,33.75781755439504,0 -84.38135775829743,33.75782333793675,0 -84.38136075313852,33.75794831358833,0 -84.38053583652082,33.75793549811079,0 -84.38053103868349,33.75758651820998,0 -84.38135036338942,33.75759661006563,0 -84.38135526152765,33.7576835863203,0 -84.38152820825904,33.75768118515558,0 -84.38152584937978,33.75750414550022,0 -84.38192684019272,33.7574945401896,0 -84.38191766564427,33.75773290841688,0 -84.38210464845251,33.7577307092651,0 -84.38210839659804,33.75743565141622,0 -84.38199542959067,33.75734343218407,0 -84.38128981731563,33.7573383382144,0 -84.38128994185273,33.75743831924589,0 -84.38033237108307,33.75742688414679,0 -84.38035512428407,33.75811976876195,0 -84.38138963369156,33.75811001051665,0 -84.38139502641091,33.758174471746,0 -84.38207661060929,33.75817296584218,0 -84.38208191886476,33.75778919341148,0 -84.38191765538321,33.75778919511428,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg029" obstacles:category="building">
+    <name>Building 29</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38084115262728,33.75941359658861,0 -84.38085164116271,33.75889502152316,0 -84.38125215548257,33.75890725133558,0 -84.38125026141729,33.75935412329027,0 -84.38146777656337,33.75935408855279,0 -84.38146513987185,33.75889569725353,0 -84.38163774494898,33.75890197371634,0 -84.38163723975013,33.7587416066844,0 -84.38099373981987,33.75872789581024,0 -84.38062050360718,33.75885997035248,0 -84.380605294094,33.75941059116492,0 -84.38084115262728,33.75941359658861,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg030" obstacles:category="building">
+    <name>Building 30</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38206454289158,33.75625908616966,0 -84.38182391611832,33.75625999679446,0 -84.38181400861708,33.75692686640853,0 -84.382039290987,33.75692621329542,0 -84.38206454289158,33.75625908616966,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg031" obstacles:category="building">
+    <name>Building 31</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38110818360259,33.75612242370134,0 -84.38054368101008,33.75612159931518,0 -84.38053455080595,33.75631626264001,0 -84.38110205413561,33.75631668477285,0 -84.38110818360259,33.75612242370134,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg032" obstacles:category="building">
+    <name>Building 32</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38602771898833,33.75598906444883,0 -84.3859603598909,33.75598549352753,0 -84.3859623327448,33.75583399386731,0 -84.38602637358397,33.75583470266417,0 -84.38603851345603,33.75568316456436,0 -84.38525530517754,33.75566134853266,0 -84.38527131970426,33.75582041356442,0 -84.38532981589847,33.75582999151977,0 -84.38532947480502,33.7559801089558,0 -84.38526445158978,33.75598200691075,0 -84.38526845518474,33.75612344227901,0 -84.3855262622308,33.7561235781748,0 -84.38552313130347,33.75608417397891,0 -84.38575678729583,33.75609264509787,0 -84.38575971000853,33.7561319226618,0 -84.38602917275533,33.75613195538942,0 -84.38602771898833,33.75598906444883,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg033" obstacles:category="building">
+    <name>Building 33</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38770518191268,33.75608244478944,0 -84.38760610968745,33.75607579474578,0 -84.38762186091169,33.75589502617095,0 -84.38771822148122,33.75590436497448,0 -84.38772411723679,33.75571446272141,0 -84.38707184611957,33.75570586191095,0 -84.38707694459873,33.755765020394,0 -84.38703032327261,33.75576985527032,0 -84.38702592653495,33.7561888806443,0 -84.38705900908964,33.75619201098123,0 -84.38705479376654,33.75624453486398,0 -84.38770475311031,33.75625701368887,0 -84.38770518191268,33.75608244478944,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg034" obstacles:category="building">
+    <name>Building 34</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38754949562957,33.75726730087608,0 -84.38696031320842,33.75725539931226,0 -84.38689487522942,33.75735180137237,0 -84.38677453554176,33.75735775244217,0 -84.38668956286747,33.75748942766566,0 -84.38655327417388,33.75748591127199,0 -84.38647118900778,33.75760159213547,0 -84.38733070063,33.75762169086421,0 -84.38754949562957,33.75726730087608,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg035" obstacles:category="building">
+    <name>Building 35</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38740285847067,33.75879020374479,0 -84.38740754630776,33.75857823639686,0 -84.38730911067299,33.75857611493952,0 -84.38730398956028,33.75850395284488,0 -84.38691591081165,33.75849258396371,0 -84.38691070998225,33.75867039343572,0 -84.38723347399922,33.75868045059892,0 -84.38723830992532,33.75879099032455,0 -84.38740285847067,33.75879020374479,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg036" obstacles:category="building">
+    <name>Building 36</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38811228194814,33.75672832151862,0 -84.38783684914951,33.75666734398033,0 -84.38764914348219,33.75666636246648,0 -84.38762393418891,33.75713287090252,0 -84.38789822266493,33.75714486958582,0 -84.38811228194814,33.75672832151862,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg037" obstacles:category="building">
+    <name>Building 37</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38903114869009,33.7569217204931,0 -84.38874881036065,33.75662594972618,0 -84.38824666633784,33.75695677147178,0 -84.38855030048252,33.75725199884899,0 -84.38903114869009,33.7569217204931,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg038" obstacles:category="building">
+    <name>Building 38</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.3881493222556,33.75709648957733,0 -84.38803358458102,33.75731313834988,0 -84.38818154096865,33.75743491635146,0 -84.38836911879682,33.75730069243048,0 -84.3881493222556,33.75709648957733,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg039" obstacles:category="building">
+    <name>Building 39</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38924685109475,33.75969962081791,0 -84.38923363170865,33.76088116584216,0 -84.39058187536269,33.76089600639877,0 -84.39056695974526,33.75972038860229,0 -84.38924685109475,33.75969962081791,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg040" obstacles:category="building">
+    <name>Building 40</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38918221346255,33.76110689845257,0 -84.38915802671781,33.76220892447856,0 -84.39052647895011,33.76222196410643,0 -84.39052861517482,33.76109201375274,0 -84.38918221346255,33.76110689845257,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg041" obstacles:category="building">
+    <name>Building 41</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.39076547508343,33.7610861787322,0 -84.39074104672591,33.76221260640088,0 -84.3918222996499,33.76222341503891,0 -84.39181549387888,33.76109754093034,0 -84.39076547508343,33.7610861787322,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg042" obstacles:category="building">
+    <name>Building 42</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.39185197052008,33.76282420399527,0 -84.39187124384067,33.76245186763578,0 -84.39150130270757,33.76245339449453,0 -84.39148509747569,33.76282796227387,0 -84.39185197052008,33.76282420399527,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg043" obstacles:category="building">
+    <name>Building 43</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38175358212335,33.76311547827656,0 -84.38091394079039,33.76313377028081,0 -84.38093207609965,33.76365833844791,0 -84.3817646674965,33.7636311100955,0 -84.38175358212335,33.76311547827656,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg044" obstacles:category="building">
+    <name>Building 44</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.383955290979,33.76456651752754,0 -84.38351929466444,33.76456571635806,0 -84.38351916556067,33.76488927809524,0 -84.38395119023616,33.76489190016528,0 -84.383955290979,33.76456651752754,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg045" obstacles:category="building">
+    <name>Building 45</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38622137124968,33.76497398451385,0 -84.38574854860399,33.76484728284495,0 -84.38570142845316,33.76497198776774,0 -84.38616678196327,33.76511089779966,0 -84.38622137124968,33.76497398451385,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg046" obstacles:category="building">
+    <name>Building 46</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38653292286132,33.76543500288806,0 -84.38716724458627,33.76595339650483,0 -84.38716774241262,33.76544847416145,0 -84.38738143013677,33.76528627683604,0 -84.38736166029842,33.76475899935912,0 -84.38653292286132,33.76543500288806,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg047" obstacles:category="building">
+    <name>Building 47</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38766184427732,33.76485254713142,0 -84.38767609202178,33.76510319799836,0 -84.38780466043127,33.76510670501833,0 -84.38806060152109,33.76531429046955,0 -84.38829071191888,33.76509209186422,0 -84.38842947923071,33.76508836603141,0 -84.38841108683809,33.76483309493499,0 -84.38766184427732,33.76485254713142,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg048" obstacles:category="building">
+    <name>Building 48</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38795829177582,33.76411246455501,0 -84.38796132644897,33.76447538570903,0 -84.38885367876307,33.76448690669496,0 -84.38883350593787,33.76411230732866,0 -84.38795829177582,33.76411246455501,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg049" obstacles:category="building">
+    <name>Building 49</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.39051739867016,33.76411354247421,0 -84.39054109732933,33.76454076530027,0 -84.39109870750326,33.76451248098027,0 -84.39123160597632,33.76436995070557,0 -84.39119207342459,33.76408165618222,0 -84.39051739867016,33.76411354247421,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg005" obstacles:category="building">
+    <name>Building 5</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38402357500485,33.76084081017956,0 -84.38403075117321,33.76051478454137,0 -84.38297598220181,33.76050261018032,0 -84.38296542847598,33.7608230116822,0 -84.38402357500485,33.76084081017956,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+
+  <Placemark id="bldg050" obstacles:category="building">
+    <name>Building 50</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38896943221016,33.76473950124142,0 -84.3889449995264,33.76542197594653,0 -84.38928075998045,33.76538536419496,0 -84.38928777904191,33.76474212170912,0 -84.38896943221016,33.76473950124142,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg051" obstacles:category="building">
+    <name>Building 51</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.3897180470742,33.76471702695608,0 -84.38974065438545,33.76537220760349,0 -84.39020899910578,33.76536482150204,0 -84.39019410834185,33.76471548419379,0 -84.3897180470742,33.76471702695608,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg052" obstacles:category="building">
+    <name>Building 52</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38997702192307,33.76260166379111,0 -84.38994427365842,33.76260039728728,0 -84.38994582252168,33.76255909585839,0 -84.38928778793054,33.76256060317757,0 -84.38928203933295,33.76259708517634,0 -84.38925008314318,33.76259837173281,0 -84.3892503144283,33.76270235846432,0 -84.38928177971273,33.76270251251675,0 -84.3892860943602,33.76274303675282,0 -84.38994448360263,33.76274475295687,0 -84.38994048822582,33.76271048423045,0 -84.38997531804151,33.76270806237386,0 -84.38997702192307,33.76260166379111,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg053" obstacles:category="building">
+    <name>Building 53</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.39259114357257,33.76312577355022,0 -84.39262650463559,33.76313252581169,0 -84.39267859986737,33.7631359006808,0 -84.39272750745911,33.76313366611527,0 -84.39278052695011,33.76312002443344,0 -84.39276160970464,33.76308917506974,0 -84.3928390502245,33.76305495318353,0 -84.39289762390644,33.76299831311009,0 -84.39292849360203,33.76294707730487,0 -84.39293974214432,33.76289084298321,0 -84.39294031578426,33.76283844606355,0 -84.39292129663882,33.76278501170337,0 -84.39289211413482,33.76273731039142,0 -84.39286447922663,33.76272219306564,0 -84.39282375698882,33.76269909403058,0 -84.39278114825838,33.76267802737056,0 -84.39273914670633,33.76266541598737,0 -84.3926852216899,33.76266137654073,0 -84.3926256541283,33.76267231856215,0 -84.39256613068439,33.76268340557946,0 -84.39252734452559,33.76270265734353,0 -84.39246679717452,33.76263180112589,0 -84.39217703590296,33.76263066149488,0 -84.39218048915443,33.7631561357155,0 -84.39216536112093,33.76318870182506,0 -84.39216771641992,33.76321734060192,0 -84.39218081424495,33.76323687111432,0 -84.39221122382907,33.76325069221225,0 -84.39225251948045,33.76324613934754,0 -84.39228069224446,33.76324369490737,0 -84.39259484775754,33.76323711448259,0 -84.39259114357257,33.76312577355022,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg054" obstacles:category="building">
+    <name>Building 54</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38570873655571,33.7641283671751,0 -84.38572679116568,33.76396833895203,0 -84.3853019923065,33.76393324106911,0 -84.38528505276764,33.76405919094091,0 -84.38556146052356,33.76407704876296,0 -84.38556278987501,33.76411255342714,0 -84.38570873655571,33.7641283671751,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg055" obstacles:category="building">
+    <name>Building 55</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38584289512352,33.76378865080383,0 -84.38580183600848,33.76378719040658,0 -84.38580899773744,33.76371801709693,0 -84.38584841779337,33.76371654489136,0 -84.38585404124271,33.76366241804829,0 -84.38578739482985,33.76366645500512,0 -84.38578355728632,33.76367707458757,0 -84.38550843325655,33.76367019047344,0 -84.38549939874791,33.76371743227733,0 -84.38543691178715,33.76371895328204,0 -84.38542036895764,33.76372506105816,0 -84.385409338656,33.76374033899225,0 -84.38540381763609,33.76375716642463,0 -84.38541302693584,33.76376788696533,0 -84.38542224475316,33.76378014978952,0 -84.38544620135917,33.76378321336508,0 -84.38549964654416,33.76378627826846,0 -84.38550163627258,33.76382775671893,0 -84.3857845787695,33.76383248004436,0 -84.38578102694326,33.763841540685,0 -84.38584265153006,33.76383967193873,0 -84.38584289512352,33.76378865080383,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg056" obstacles:category="building">
+    <name>Building 56</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38165318934381,33.76487581733515,0 -84.3816064646459,33.7648689957871,0 -84.38160256921654,33.76472755519917,0 -84.38156344812018,33.76472741834786,0 -84.3815575856208,33.76450782943153,0 -84.38104556181295,33.7644927270989,0 -84.38103514772891,33.76471897455773,0 -84.38098283149188,33.76472106281019,0 -84.38097406087691,33.76485788925061,0 -84.38092066429007,33.76486021065579,0 -84.38093321162752,33.76520337642464,0 -84.38096496515001,33.76520767461926,0 -84.38096959969235,33.76531002966845,0 -84.38102314715998,33.76531310782772,0 -84.38102280163781,33.76540844775732,0 -84.38153790986522,33.7654155955545,0 -84.38154030815166,33.76531794399533,0 -84.38159203800335,33.7653114194935,0 -84.38160012682413,33.76522031018109,0 -84.38164988004732,33.76522002187436,0 -84.38165318934381,33.76487581733515,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg057" obstacles:category="building">
+    <name>Building 57</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.37966628909905,33.75755387690417,0 -84.37954623008297,33.75770287109857,0 -84.379964464523,33.75800161933263,0 -84.38010288544614,33.7578485034916,0 -84.37966628909905,33.75755387690417,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg058" obstacles:category="building">
+    <name>Building 58</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38318970863152,33.75581666894195,0 -84.38316236595257,33.75608744782051,0 -84.38391885659752,33.75608490159366,0 -84.38390405106644,33.75580323206985,0 -84.38318970863152,33.75581666894195,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg059" obstacles:category="building">
+    <name>Building 59</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.37964148897218,33.75590972990707,0 -84.37964673779203,33.75562487396504,0 -84.37945185884846,33.75563500385746,0 -84.37945287926402,33.75590563594647,0 -84.37964148897218,33.75590972990707,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg060" obstacles:category="building">
+    <name>Building 60</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38092895994488,33.75545097837182,0 -84.38092688401754,33.75535765596698,0 -84.38106670625234,33.75536647429281,0 -84.38107787196981,33.7554423056605,0 -84.38157796274857,33.75543712673137,0 -84.38157243900899,33.75546273085277,0 -84.3819240416821,33.75546047895038,0 -84.38192950331636,33.75543784878065,0 -84.38203507256574,33.75544245048007,0 -84.38206431043581,33.75548881408457,0 -84.38212766134784,33.75548912668091,0 -84.38216916060601,33.75545679562116,0 -84.38216585661456,33.75539548149487,0 -84.38213207042193,33.75539124309312,0 -84.38214713597525,33.75476390219296,0 -84.38181329408775,33.75477485023243,0 -84.38181888165754,33.75487716556898,0 -84.3814482643369,33.75487571690205,0 -84.38144694078783,33.75525269890188,0 -84.38050139155979,33.75525478436413,0 -84.38050284753025,33.75545318937199,0 -84.38092895994488,33.75545097837182,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg061" obstacles:category="building">
+    <name>Building 61</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38975622622425,33.7585940935322,0 -84.38957847781454,33.75870245100737,0 -84.38960586590351,33.75873524389703,0 -84.38950239368194,33.75880241410738,0 -84.38969728413433,33.75899807593604,0 -84.38997217554486,33.75879339017731,0 -84.38975622622425,33.7585940935322,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg062" obstacles:category="building">
+    <name>Building 62</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38902126003724,33.75779515172033,0 -84.38848504838046,33.75818799291196,0 -84.38893693196381,33.75861460129736,0 -84.38947978312471,33.75823646394002,0 -84.38902126003724,33.75779515172033,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg063" obstacles:category="building">
+    <name>Building 63</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38978126708666,33.75762616875664,0 -84.38953224052412,33.75779652344748,0 -84.38943147533951,33.75771637692137,0 -84.38918272411716,33.75786877832506,0 -84.38941531634731,33.75809954704491,0 -84.38944434646938,33.75807729333753,0 -84.38951990564881,33.75814604838337,0 -84.38998544765796,33.75781568928463,0 -84.38978126708666,33.75762616875664,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg064" obstacles:category="building">
+    <name>Building 64</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38978219849824,33.75557014231826,0 -84.38930038028053,33.75592510870085,0 -84.38953536376945,33.75616047207654,0 -84.38945874212303,33.75621674847622,0 -84.3895841770245,33.75634374352622,0 -84.39013946383466,33.75594782169375,0 -84.38978219849824,33.75557014231826,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg065" obstacles:category="building">
+    <name>Building 65</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38765089295619,33.75495891823577,0 -84.38763947904822,33.75545671797005,0 -84.38793381538785,33.75546057153924,0 -84.38794256109617,33.7549639323263,0 -84.38765089295619,33.75495891823577,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg066" obstacles:category="building">
+    <name>Building 66</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38986300282876,33.75710156859007,0 -84.38978134938819,33.75702426328121,0 -84.38954259665279,33.75718576844154,0 -84.38962389969377,33.75726865072143,0 -84.38986300282876,33.75710156859007,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg067" obstacles:category="building">
+    <name>Building 67</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.392303748221,33.75724432015237,0 -84.39246677598163,33.75700675857964,0 -84.3921013627949,33.75666686575241,0 -84.39180262633663,33.75677281249821,0 -84.392303748221,33.75724432015237,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg068" obstacles:category="building">
+    <name>Building 68</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.39098110127986,33.75561715492851,0 -84.39068832497429,33.7558240435315,0 -84.39088103579783,33.75600969838323,0 -84.39063427634365,33.75619011260285,0 -84.39072629239011,33.75627898427112,0 -84.39097749035754,33.75608548376894,0 -84.39110986731893,33.75620199680706,0 -84.39138937307455,33.75599918531525,0 -84.39098110127986,33.75561715492851,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg069" obstacles:category="building">
+    <name>Building 69</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.39121403241794,33.75989879232054,0 -84.39110591574639,33.75989758859349,0 -84.39110802762153,33.75981352135207,0 -84.39097199470606,33.75981782982397,0 -84.39097051702861,33.75989914471937,0 -84.39085537785228,33.75990082599252,0 -84.39085876077697,33.75992129054572,0 -84.39080253157451,33.75992639959455,0 -84.39078106176159,33.75995227927136,0 -84.39077360544511,33.75998419746665,0 -84.39074889702732,33.75998668147253,0 -84.39074707810062,33.76028544346502,0 -84.39095997766168,33.76029191986066,0 -84.39096093024234,33.76006377592869,0 -84.39115895986106,33.7600634968364,0 -84.39115991258343,33.75999675505707,0 -84.39121573911993,33.75999738658299,0 -84.39121403241794,33.75989879232054,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg070" obstacles:category="building">
+    <name>Building 70</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.39078094039464,33.75654205798915,0 -84.39026253102803,33.75689981295407,0 -84.39046901653673,33.75709749780404,0 -84.39072078786653,33.7569243240225,0 -84.39075259876627,33.75695477971645,0 -84.39065793786247,33.75703108466548,0 -84.39085639511619,33.75722808988819,0 -84.39120646870774,33.75697737342568,0 -84.39078094039464,33.75654205798915,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg071" obstacles:category="building">
+    <name>Building 71</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.39140439722037,33.75644401524661,0 -84.39118510023805,33.75625314404753,0 -84.39092328241165,33.75643256352102,0 -84.39113592712369,33.75663842547239,0 -84.39140439722037,33.75644401524661,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg072" obstacles:category="building">
+    <name>Building 72</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.39118401275601,33.75482549350725,0 -84.39100776908083,33.75494716629116,0 -84.39105058005961,33.75499365610362,0 -84.39092293683868,33.75508587271454,0 -84.39110607514489,33.75525912419438,0 -84.39140760385448,33.7550367660737,0 -84.39118401275601,33.75482549350725,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg073" obstacles:category="building">
+    <name>Building 73</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.39171565611267,33.7554085843331,0 -84.39160154099294,33.75549406310584,0 -84.39151178504119,33.75540728845962,0 -84.39161780319411,33.75532125593417,0 -84.39151218481653,33.75520745054851,0 -84.39126585900122,33.7553933016878,0 -84.39157227200991,33.75569164090832,0 -84.39182100288605,33.75551246051761,0 -84.39171565611267,33.7554085843331,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg074" obstacles:category="building">
+    <name>Building 74</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.39235886977794,33.75545713150413,0 -84.39178457904761,33.75586718869851,0 -84.39196771770489,33.75604120529017,0 -84.3925655492414,33.75563895160931,0 -84.39235886977794,33.75545713150413,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg075" obstacles:category="building">
+    <name>Building 75</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.38588171994756,33.75459950026494,0 -84.38524468816698,33.75458763253897,0 -84.38524416310176,33.75486986192385,0 -84.38587721591978,33.75487740864291,0 -84.38588171994756,33.75459950026494,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg077" obstacles:category="building">
+    <name>Building 77</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.39146143311241,33.75847351916691,0 -84.39128232305065,33.75867247196693,0 -84.39123936671732,33.75864820722995,0 -84.3911735447833,33.75873011544851,0 -84.39152315684864,33.75893254330245,0 -84.39159826986028,33.75883829006161,0 -84.39156672342435,33.75881728685344,0 -84.39171605478894,33.75862390047386,0 -84.39146143311241,33.75847351916691,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark id="bldg076" obstacles:category="building">
+    <name>Building 76</name>
+    <styleUrl>styles.kml#m_obstacle</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -84.39060765610526,33.75869730104987,0 -84.39064954908648,33.75874508352568,0 -84.39079687810961,33.75864356308446,0 -84.3906458755456,33.75851788401759,0 -84.39039828551438,33.75869828067619,0 -84.39048219228745,33.75878163761228,0 -84.39060765610526,33.75869730104987,0 
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark> -->
+  
+</Document>
+</kml>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ /*
+ *  Copyright © 2015 Claus Christmann <hcc |ä| gatech.edu>.
+ *  
+ */
+-->
+<Configuration
+  xmlns="http://uav.ae.gatech.edu/XML/SAI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://uav.ae.gatech.edu/XML/SAI ../../XSD/sai.xsd"
+>
+
+<DatumNED>
+  <!-- McKenna MOUT -->
+   <coordinates>-84.80537171192663,32.37133263847644,0</coordinates> 
+</DatumNED>
+
+<Arena>
+  <!-- McKenna MOUT -->
+  <coordinates>
+    -84.80455720143341,32.37158635731291,0 -84.80599779156783,32.37138525543941,0 -84.80607274691425,32.3712423420057,0 -84.8063698924317,32.3709997372148,0 -84.80624543676279,32.37061049357821,0 -84.80570045116139,32.37025265330841,0 -84.8055884635323,32.37002892315341,0 -84.80540395339732,32.36992893004193,0 -84.80516146795652,32.36983298484992,0 -84.80503026343575,32.3697470334272,0 -84.80505503547698,32.36951961374155,0 -84.80458216652642,32.36947847721661,0 -84.80414841871594,32.3695494545757,0 -84.80389967552617,32.36974625444622,0 -84.80373687734877,32.3699267646757,0 -84.80367506709457,32.37025542355135,0 -84.80379242353965,32.37055963140964,0 -84.80392313726306,32.37078713785061,0 -84.80405918184223,32.37087511967391,0 -84.80455720143341,32.37158635731291,0 
+  </coordinates>
+</Arena>
+
+<Obstacles>
+  <href>KML/McKenna_MOUT.kml</href>
+</Obstacles>
+
+<Nodes>
+  <ControlStation>
+    <name>GCS2</name>
+    <!-- McKenna MOUT -->
+    <coordinates>-84.80526508577383,32.3713659957069,0</coordinates> 
+    <startupDelay>0002</startupDelay>
+    <dds>
+      <name>DDS</name>
+    </dds>
+    <camera>
+      <hFov>120</hFov> <!-- approx. human binocular vision -->
+    </camera>
+    <hmi>
+      <name>HMI</name>
+      <Joystick>
+        <name>GREAT PLANES InterLink Elite</name>
+        <Roll>
+          <axis>0</axis>
+          <max>24660</max>
+          <min>-24999</min>
+        </Roll>
+        <Pitch>
+          <axis>1</axis>
+          <max>22633</max>
+          <min>-22634</min>
+        </Pitch>
+        <Yaw>
+          <axis>4</axis>
+          <max>24998</max>
+          <min>-21958</min>
+        </Yaw>
+        <Throttle>
+          <axis>2</axis>
+          <reverse /> <!-- use the default value "true" -->
+          <max>22971</max>
+          <min>-20607</min>
+        </Throttle>
+        <button action="altitudeHold">0</button>
+        <button action="dash">1</button>
+        <button action="extremes">2</button>
+        <autoRepeatDelay /> <!-- use the default value "250"-->
+      </Joystick>
+    </hmi>
+  </ControlStation>
+</Nodes>
+   
+</Configuration>
