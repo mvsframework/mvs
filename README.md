@@ -14,7 +14,7 @@ Besides the standard C and C++ libraries, MVS utilizes third party software avai
 * RTI Connext DDS Professional - commercial (free for academic use)
 * SDL - [zlib license](http://www.zlib.net/zlib_license.html)
 * VisiLibity - [LGPL v3](https://www.gnu.org/licenses/lgpl-3.0.txt)
-* VRONI - commercial (free for academic use)
+* [VRONI](http://www.cosy.sbg.ac.at/~held/projects/vroni/vroni.html) - commercial (free for academic use)
 
 The sources of MVS itself and the related wrappers for third-party libraries are released under differing open-source licenses :
 * MVS - [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0.html)
